@@ -21,7 +21,13 @@ export const Header=()=>{
                                 className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
                                 to="/cards"
                             >
-                                card
+                                学習する
+                            </Link>
+                            <Link 
+                                className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
+                                to="/create"
+                            >
+                                カード作成
                             </Link>
                             <Link 
                                 className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
