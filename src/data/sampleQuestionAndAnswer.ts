@@ -1,6 +1,6 @@
 import { question } from "../util/typeDefinition"
 
-export const sampleProblems:question[]=[
+export const sampleQuestions:question[]=[
     {
         id:1,
         ownUserId:1,
