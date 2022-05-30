@@ -24,8 +24,9 @@
   color: white;
 }
 body{
-  background-color:rgb(46, 44, 44);
+  /*background-color:rgb(46, 44, 44);*/
   /*background-color:rgba(44, 51, 70,1);*/
+  background-color: rgb(148 163 184);
 
 }
 
