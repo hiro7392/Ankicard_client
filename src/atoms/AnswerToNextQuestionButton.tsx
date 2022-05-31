@@ -1,15 +1,13 @@
 import { createTypeReferenceDirectiveResolutionCache } from "typescript";
 type questionIdManage={
-    nowQuestionId:number;
-    changeQuestionId:Function;
+    ToNextQuestion:Function;
 }
 {/*回答->次の問題へ　遷移するボタン */}
-export const QuestionCardButton=(props:questionIdManage)=>{
+export const AnswerToNextQuestionButton=(props:questionIdManage)=>{
     
     const onclickOpenAnswer=()=>{
-        console.log("changeQuestionId！！");
-        props.changeQuestionId(props.nowQuestionId);
-        console.log(props.nowQuestionId);
+        //console.log("changeQuestionId！！");
+        props.ToNextQuestion();
     }
     return(
         <button className="bg-teal-500 rounded-lg mt-3 p-3 text-white ml-5" onClick={onclickOpenAnswer}>次の問題へ</button>

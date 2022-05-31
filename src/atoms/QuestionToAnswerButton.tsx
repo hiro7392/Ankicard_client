@@ -1,7 +1,6 @@
 import { createTypeReferenceDirectiveResolutionCache } from "typescript";
 
 type questionStateManage={
-    nowQuestionId:number;
     changeQuestionState:Function;
     buttonText?:string;
 }
@@ -9,7 +8,7 @@ type questionStateManage={
 export const QuestionToAnswerButton=(props:questionStateManage)=>{
     
     const onclickOpenAnswer=()=>{
-        console.log("changeQuestion State！！");
+        //console.log("changeQuestion State！！");
         props.changeQuestionState();
     }
     return(
