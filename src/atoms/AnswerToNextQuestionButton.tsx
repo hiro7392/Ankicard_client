@@ -12,6 +12,6 @@ export const QuestionCardButton=(props:questionIdManage)=>{
         console.log(props.nowQuestionId);
     }
     return(
-        <button className="bg-teal-500 rounded-lg mt-3 p-3 text-white" onClick={onclickOpenAnswer}>次の問題へ</button>
+        <button className="bg-teal-500 rounded-lg mt-3 p-3 text-white ml-5" onClick={onclickOpenAnswer}>次の問題へ</button>
     )
 };

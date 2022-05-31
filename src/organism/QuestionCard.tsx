@@ -22,26 +22,26 @@ export const QuestionCard=()=>{
     const [displayAnswer,setDisplayAnswer]=useState(false);
     const onclickOpenAnswer=()=>{
         setDisplayAnswer(!displayAnswer);
-        console.log(displayAnswer?"答えを表示します":"答えを隠します");
+        //console.log(displayAnswer?"答えを表示します":"答えを隠します");
     }
 
     return ( 
         <div className="mt-20 w-1/2 h-1/2 m-auto ">
-            <h1 className="bg-lime-300 text-3xl py-2">問題</h1>
+            <h1 className="bg-lime-300 text-3xl py-2">{displayAnswer?"答え":"問題"}</h1>
             {/*問題の本文*/}
             <QuestionCardText 
             text={displayAnswer?"answer":questionText}
             />
+            {/*問題文->回答へ　遷移するボタン */}
+            <QuestionToAnswerButton nowQuestionId={questionId} 
+            changeQuestionState={onclickOpenAnswer}
+            buttonText={displayAnswer? "問題を見る":"答えを見る"}
+            />
 
-            
-            {displayAnswer?
+            {displayAnswer &&
                 /*回答->次の問題へ　遷移するボタン */
                 <QuestionCardButton nowQuestionId={questionId} 
                 changeQuestionId={incrementQuestionId} 
-                />:
-                /*問題文->回答へ　遷移するボタン */
-                <QuestionToAnswerButton nowQuestionId={questionId} 
-                changeQuestionState={onclickOpenAnswer}
                 />
             }
         </div>
