@@ -10,6 +10,6 @@ export const AnswerToNextQuestionButton=(props:questionIdManage)=>{
         props.ToNextQuestion();
     }
     return(
-        <button className="bg-teal-500 rounded-lg mt-3 p-3 text-white ml-5" onClick={onclickOpenAnswer}>次の問題へ</button>
+        <button className="bg-teal-500 rounded-lg mt-3 p-3 text-white ml-5 hover:bg-blue-600" onClick={onclickOpenAnswer}>次の問題へ</button>
     )
 };
