@@ -31,13 +31,19 @@ export const Header=()=>{
                             </Link>
                             <Link 
                                 className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
+                                to="/cards"
+                            >
+                                カード一覧
+                            </Link>
+                            <Link 
+                                className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
                                 to="/progress"
                             >
                                 進捗
                             </Link>
                             <Link 
                                 className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
-                                to="/progress"
+                                to="/userinfo"
                             >
                                 ユーザー情報
                             </Link>

@@ -1,6 +1,6 @@
 import { AppTitle } from "../atoms/AppTitle"
 import {Header} from "../templates/Header"
-export const Home=()=>{
+export const HomePage=()=>{
     return(
         <>
         <Header/>

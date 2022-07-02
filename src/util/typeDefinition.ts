@@ -1,7 +1,7 @@
 export type question={
     id:number;
     ownUserId:number;
-    QuestionTest:string;
+    QuestionText:string;
     AnswerText:string;
     tag:string;
 };

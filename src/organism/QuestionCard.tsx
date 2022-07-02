@@ -14,7 +14,7 @@ export const QuestionCard=(props:QuestionProps)=>{
     const [questionText,setQuestionText]=useState("");
     useEffect(()=>{
         //console.log("render question text");
-        setQuestionText(props.Question.QuestionTest);
+        setQuestionText(props.Question.QuestionText);
         setDisplayAnswer(false);
     },[props.Question.id]);
 
@@ -34,7 +34,7 @@ export const QuestionCard=(props:QuestionProps)=>{
             <QuestionCardText 
             text={displayAnswer?
                 props.Question.AnswerText
-                :props.Question.QuestionTest}
+                :props.Question.QuestionText}
             css="bg-slate-100 h-96 px-20 text-3xl flex items-center mb-10 leading-10"
             />
             {/*問題文->回答へ　遷移するボタン */}

@@ -1,7 +1,7 @@
 import { CreateQuestionCard } from "../organism/CreateQuestionCard";
 import { Header } from "../templates/Header";
 
-export const CreateCard=()=>{
+export const CreateCardPage=()=>{
 
     return(
         <>
