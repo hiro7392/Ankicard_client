@@ -17,7 +17,7 @@ export const Router=()=>{
             {/*カード新規作成 */}
             <Route path="/create" element={<CreateCardPage/>}/>
             {/*カード一覧を見る */}
-            <Route path="/cards" element={<ShowCardsPage/>}/>
+            <Route path="/usercards" element={<ShowCardsPage/>}/>
             {/*進捗状況を見る */}
             <Route path="/progress" element={<Progress/>}/>
             {/*ユーザ情報を確認する画面*/}

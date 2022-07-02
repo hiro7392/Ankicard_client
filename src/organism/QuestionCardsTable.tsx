@@ -13,13 +13,25 @@ export const QuestionCardsTable=()=>{
         //setUserCreatedCards(sampleQuestions)
     },[]);
     //"bg-slate-100 h-48 w-32 px-20 text-3xl flex items-center mb-10 leading-10"
-    const css:string="bg-slate-100 h-48 w-32 px-20 text-3xl flex items-center mb-10 leading-10";
+    const css:string="bg-slate-100 h-48 w-60 mx-10 my-20  text-3xl flex items-center mb-10 leading-10";
     return(
         <>
             {
-                userCreatedCards.map((quesiton)=>{
-                    return(<MiniQuestionCard text={quesiton.QuestionText} css={css}/>);
-                })
+                <table className="m-auto">
+                    
+                    <tbody>
+                    <tr>
+                        {userCreatedCards.map((quesiton)=>{
+                            return(
+                            <td>
+                                <MiniQuestionCard text={quesiton.QuestionText} css={css}/>
+                            </td>);
+                        }
+                        )}
+                    </tr>
+                    </tbody>
+                   
+                </table>
             }
         </>
     );
