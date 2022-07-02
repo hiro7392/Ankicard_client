@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { CreateCard } from "../pages/CreateCard";
-import { Home } from "../pages/Home";
-import { Progress } from "../pages/Progress";
-import { ShowCards } from "../pages/ShowCards";
+import { CreateCard } from "../pages/CreateCardPage";
+import { Home } from "../pages/HomePage";
+import { Progress } from "../pages/ProgressPage";
+import { ShowCards } from "../pages/LearningCardPage";
 
 export const Router=()=>{
     return(

@@ -35,6 +35,12 @@ export const Header=()=>{
                             >
                                 進捗
                             </Link>
+                            <Link 
+                                className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
+                                to="/progress"
+                            >
+                                ユーザー情報
+                            </Link>
                         </div>
                             <div className="my-3">
                                 <LogoutIcon 
