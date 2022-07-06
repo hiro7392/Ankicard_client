@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnswerToNextQuestionButton } from "../atoms/AnswerToNextQuestionButton";
 import { QuestionToAnswerButton} from "../atoms/QuestionToAnswerButton";
-import { QuestionCardText } from "../atoms/QuestionCardText";
+import { QuestionCardText } from "../atoms/QuestionCardTextTag";
 import { question } from "../util/typeDefinition";
 
 type QuestionProps={
@@ -36,6 +36,7 @@ export const QuestionCard=(props:QuestionProps)=>{
                 props.Question.AnswerText
                 :props.Question.QuestionText}
             css="bg-slate-100 h-96 px-20 text-3xl flex items-center mb-10 leading-10"
+            tag={props.Question.tag}
             />
             {/*問題文->回答へ　遷移するボタン */}
             <QuestionToAnswerButton changeQuestionState={onclickOpenAnswer}
