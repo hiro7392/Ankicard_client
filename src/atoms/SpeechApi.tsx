@@ -22,9 +22,9 @@ recognition.continuous = true;
 export const Voice = () => {
 
   //const ua = parser(navigator.userAgent.toLowerCase());
-  const [isVoiceReceive,setIsVoiceReceive] = useState(false)
-  const [message,setMessage] = useState([])
-  const [recordingState,setRecordingState]=useState(false)
+  const [isVoiceReceive,setIsVoiceReceive] = useState(false);
+  const [message,setMessage] = useState<string>("");
+  const [recordingState,setRecordingState]=useState(false);
 
   const SppechView = () =>{
     const btn = document.getElementById('btn');
@@ -39,31 +39,33 @@ export const Voice = () => {
       speech.stop();
       if(event.results[0].isFinal){
           const  autotext =  event.results[0][0].transcript
-          // const createMessage = message
-          
-          // createMessage.push(`${autotext}`)
           setMessage(autotext)
       }
     }
 
     speech.onend = () => {
-      setIsVoiceReceive(true)
-      speech.start() 
+      setIsVoiceReceive(true);
+      speech.start();
     };
     const startSpeech =()=>{
-      speech.start();
-      //setRecordingState(!recordingState);
+      if(!isVoiceReceive){
+        setIsVoiceReceive(true);
+        speech.start();
+      }else{
+        setIsVoiceReceive(false);
+        speech.stop();
+      }
     };
-    
+    console.log(isVoiceReceive);
     return (
       <>
-        <button id="btn" onClick={startSpeech}>
-        {isVoiceReceive ?<h3 className='text-blue-400 rounded-lg bg-slate-100 w-1/4 mx-auto'>音声で入力</h3>
-        :<h3 className='text-red-400 rounded-lg bg-slate-100 w-1/4 mx-auto'>停止する</h3>}<br/>
+        <button id="btn" className={isVoiceReceive? "text-red-400 py-1 rounded-lg bg-slate-100 w-1/4 mx-auto"
+        :"text-blue-400 py-1 rounded-lg bg-slate-100 w-1/4 mx-auto"} 
+        onClick={startSpeech}>
+        {isVoiceReceive ?"停止する":"音声入力を開始する"}
         </button>
-        
-         メッセージ件数:{message.length}<br/>
-         {message}
+        <br/>
+         <h4>取得した内容:{message}</h4>
       </>
       // <>
       //   <button id="btn" onClick={startSpeech}>音声認識開始</button>
