@@ -9,7 +9,7 @@ export const QuestionCardsTable=()=>{
     
     useEffect(()=>{
         //  ここでapiを読んでカードを取得する
-
+        
         //とりあえず今はサンプルデータを入れておく
         //setUserCreatedCards(sampleQuestions)
     },[]);

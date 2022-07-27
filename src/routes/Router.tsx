@@ -24,7 +24,6 @@ export const Router=()=>{
             <Route path="/userinfo" element={<UserInfoPage/>}/>
 
 
-
         </Routes>
     );
 };
