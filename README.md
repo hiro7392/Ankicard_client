@@ -1,4 +1,4 @@
-# 個人開発 分散学習アプリのclient
+# 個人開発 学習補助アプリのclient
 
 ## 使用技術
 * react-create-app
