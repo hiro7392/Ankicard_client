@@ -65,7 +65,7 @@ export const Voice = () => {
         {isVoiceReceive ?"停止する":"音声入力を開始する"}
         </button>
         <br/>
-         <h4>取得した内容:{message}</h4>
+         {/* <h4>取得した内容:{message}</h4> */}
       </>
       // <>
       //   <button id="btn" onClick={startSpeech}>音声認識開始</button>

@@ -3,8 +3,9 @@ import {LogoutIcon} from '@heroicons/react/outline'
 
 export const Header=()=>{
     return(
-        <header className="flex item-center pl-8 h-14 bg-teal-500 w-screen">
-                <nav className="bg-teal-500 w-screen">
+        <header className="flex item-center pl-8 h-14 bg-slate-700 w-screen">
+                {/* <nav className="bg-teal-500 w-screen"> */}
+                <nav className="bg-slate-700 w-screen">
                     <div className="flex justify-between">
                         <div className="my-3">
                             <span className="font-semibold text-xl tracking-tight text-white">
@@ -15,7 +16,7 @@ export const Header=()=>{
                                 className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
                                 to="/"
                             >
-                                Home
+                                ホーム
                             </Link>
                             <Link 
                                 className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 

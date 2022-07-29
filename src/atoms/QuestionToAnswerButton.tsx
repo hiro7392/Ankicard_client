@@ -12,7 +12,7 @@ export const QuestionToAnswerButton=(props:questionStateManage)=>{
         props.changeQuestionState();
     }
     return(
-        <button className="bg-rose-500 rounded-lg mt-3 p-3 text-white hover:bg-lime-400" 
+        <button className="bg-blue-700 rounded-lg mt-3 p-3 text-white hover:bg-lime-400" 
             onClick={onclickOpenAnswer}
         >
             {props.buttonText}
