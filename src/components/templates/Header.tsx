@@ -33,51 +33,51 @@ export const Header=()=>{
                             </span>
                             {/*ホーム画面へ戻る */}
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
                                 to="/"
                             >
                                 ホーム
                             </Link>
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
                                 to="/cards"
                             >
                                 学習する
                             </Link>
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
                                 to="/create"
                             >
                                 カード作成
                             </Link>
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
                                 to="/usercards"
                             >
                                 カード一覧
                             </Link>
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
                                 to="/progress"
                             >
                                 進捗
                             </Link>
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-700 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
                                 to="/userinfo"
                             >
                                 ユーザー情報
                             </Link>
                         </div>
-                            <div className="my-3">
+                            <button className="my-3">
                                 <LogoutIcon 
-                                className="h-8 w-10 text-gray-200 hover:bg-gray-100 px-1 mr-5 rounded"
+                                className="h-8 w-10 text-gray-200 hover:bg-gray-300 px-1 mr-5 rounded"
                                 aria-hidden="true"
                                 onClick={()=>{
                                     modal()
                                 }}
                                 />
-                            </div>
+                            </button>
                         </div>
                 </nav>
         </header>
