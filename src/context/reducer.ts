@@ -8,7 +8,7 @@ export const initialState = { // グローバルステイトの初期値
 }
 export const initialLoginState = {
     loginState:{
-        serviceName: "暗記カード",
+        serviceName: "Anki Card",
         isLogin: false,
     }
 }

@@ -1,26 +1,32 @@
 import { Dispatch, FC, Fragment, SetStateAction, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { LogoutIcon } from '@heroicons/react/outline'
-import { useDispatchLogout, useGlobalLoginState } from '../../context/StateProvider'
-import { loginState } from '../../context/reducer'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useDispatch, useGlobalLoginState } from '../../context/StateProvider'
+import { useNavigate } from 'react-router-dom'
 
 const Modal: FC<{setModalOn: Dispatch<SetStateAction<boolean>>}> = ({setModalOn}) => {
     const [open, setOpen] = useState(true)
-    const loginStateModal = useGlobalLoginState('loginState')
     const cancelButtonRef = useRef(null)
-
-    const dispatch=useDispatchLogout();
+    const {isLogin} = useGlobalLoginState('loginState')
+    
     const navigate = useNavigate()
+
+    //  ログアウト処理
     const logout = () => {
+      changeLoginState()
+      navigate('/login')
+      console.log("logout",isLogin)
+    }
+    const dispatch=useDispatch();
+    //  グローバルなisLoginをfalseにする
+    const changeLoginState=()=>{
         dispatch({ 
-            type: 'setLogout',
+            type: 'setLogin',
             payload: {
-                serviceName: "ログアウト",
-                isLogin: false
+                serviceName:"ログアウト",
+                isLogin: !isLogin
             },
-    })
-        navigate('/')
+        })
     }
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -30,7 +36,6 @@ const Modal: FC<{setModalOn: Dispatch<SetStateAction<boolean>>}> = ({setModalOn}
         initialFocus={cancelButtonRef}
         onClose={() => {
           setOpen(false)
-          loginStateModal.isLogin=true;
         }}
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">

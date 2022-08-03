@@ -1,42 +1,50 @@
-import { useContext, useEffect } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { loginReducer } from '../../context/reducer'
-import { useDispatch, useGlobalLoginState } from '../../context/StateProvider'
+import {useDispatch, useGlobalLoginState } from '../../context/StateProvider'
+import { AppTitle } from '../atoms/AppTitle'
 
 const Login = () => {
-  const { serviceName,isLogin} = useGlobalLoginState('loginState')
-  //const {isLogin,setIsLogin}=useContext()
+  const { isLogin} = useGlobalLoginState('loginState')
+
+
   const navigate=useNavigate()
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
   
   // 認証処理
-  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {}
+  const sendEmail = ()=>{
+    console.log(email,password)
+    axios.get("http://localhost:8080/api/auth",)
+  }
   //ログインボタンの処理
   const login=()=>{
-      const result=false
+      const result=true
        //ログイン処理が成功すると、ログイン状態をtrueにする 
-      if(false){
-        setLogin()
+      if(result){
+        changeLoginState()
         navigate('/login')
       }else{
         alert('ログインに失敗しました')
       }
   }
     const dispatch = useDispatch();
-    const  setLogin=()=>{
+    const  changeLoginState=()=>{
     // グローバルステイトの更新を行わせる指示をdispatchの引数とする
         dispatch({
             type: 'setLogin',
             payload: {
                 serviceName:"ログイン",
-                isLogin: true
+                isLogin: !isLogin
             },
         })
     }
 
   useEffect(()=>{
+    console.log("ログイン状態",isLogin)
       //現在のログイン状況を確認
     if(isLogin){
-        console.log("ログイン済み")
+        console.log("ログイン済み",isLogin)
         navigate('/')
     }
   },[isLogin,navigate])
@@ -44,10 +52,9 @@ const Login = () => {
 
   return (
     <div>
-      <div className="flex bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-10 flex-col font-mono">
-        <h1 className="bg-white pt-10 pb-8 font-bold rounded text-3xl">
-          {serviceName}!!
-        </h1>
+
+      <div className="flex bg-white shadow-md rounded-lg w-1/2  mx-auto px-8 pt-6 pb-8 mb-4 mt-10 flex-col font-mono">
+        <AppTitle/>
         <h1 className="bg-white pt-6 pb-4 font-bold rounded text-xl">Login</h1>
         <div className="mb-4">
           <label
@@ -61,6 +68,8 @@ const Login = () => {
             id="username"
             placeholder="Username"
             autoFocus={true}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
           />
         </div>
@@ -75,6 +84,8 @@ const Login = () => {
             type="password"
             id="password"
             placeholder="******************"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
           />
           <p className="text-red text-xs italic">Please choose a password.</p>
@@ -83,7 +94,7 @@ const Login = () => {
           <button
             type="submit"
             className="bg-gray-600 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
-            onClick={()=>login()}
+            onClick={()=>{login()}}
           >Login</button>
         </div>
       </div>

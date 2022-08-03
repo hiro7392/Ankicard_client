@@ -29,9 +29,6 @@ export const useDispatch = () => {
   return useContext(dispatchContextLogin)
 }
 
-export const useDispatchLogout = () => {
-    return useContext(dispatchContextLogout)
-}  
 // keyofでloginStateの要素のプロパティをunion型に変換し、それをKが継承する
 export const useGlobalLoginState = <K extends keyof loginState>(property: K) => {
     const state = useContext(stateContext)
