@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { sampleQuestions } from "../data/sampleQuestionAndAnswer";
+import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
 import { MiniQuestionCard } from "../molecules/MiniQuestionCard";
 
 export const QuestionCardsTable=()=>{

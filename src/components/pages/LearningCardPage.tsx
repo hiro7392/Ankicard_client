@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { sampleQuestions } from "../data/sampleQuestionAndAnswer";
+import {useState } from "react";
+import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
 import { QuestionCard } from "../organism/QuestionCard";
 import { Header } from "../templates/Header";
 

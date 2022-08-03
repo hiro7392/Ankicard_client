@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnswerToNextQuestionButton } from "../atoms/AnswerToNextQuestionButton";
 import { QuestionToAnswerButton} from "../atoms/QuestionToAnswerButton";
 import { QuestionCardText } from "../atoms/QuestionCardTextTag";
-import { question } from "../util/typeDefinition";
+import { question } from "../../util/typeDefinition";
 
 type QuestionProps={
     Question:question;

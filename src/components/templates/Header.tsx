@@ -1,8 +1,28 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import {LogoutIcon} from '@heroicons/react/outline'
+import { useEffect, useState } from "react"
+import { useDispatch, useDispatchLogout, useGlobalLoginState } from "../../context/StateProvider"
+import Modal from "../organism/Modal"
 
 export const Header=()=>{
+
+    const { isLogin } = useGlobalLoginState('loginState')
+    const navigate = useNavigate()
+    const [modalOn, setModalOn] = useState<boolean>(false)
+    const location = useLocation()
+
+    //  ログアウト用のモーダルを開く
+    const modal = () => {
+        setModalOn((prevState) => (prevState = true))
+    }
+
+    useEffect(() => {
+    if (!isLogin) navigate('/login')
+    }, [isLogin,navigate])
+
+
     return(
+        <>
         <header className="flex item-center pl-8 h-14 bg-slate-700 w-screen">
                 {/* <nav className="bg-teal-500 w-screen"> */}
                 <nav className="bg-slate-700 w-screen">
@@ -51,15 +71,17 @@ export const Header=()=>{
                         </div>
                             <div className="my-3">
                                 <LogoutIcon 
-                                className="h-8 w-10 text-gray-200 hover:bg-gray-700 px-1 mr-5 rounded"
+                                className="h-8 w-10 text-gray-200 hover:bg-gray-100 px-1 mr-5 rounded"
                                 aria-hidden="true"
-                                /** onClick={()=>{
+                                onClick={()=>{
                                     modal()
-                                }}*/
+                                }}
                                 />
                             </div>
                         </div>
                 </nav>
         </header>
+        {modalOn ? <Modal setModalOn={setModalOn} /> : null}
+        </>
     )
 }

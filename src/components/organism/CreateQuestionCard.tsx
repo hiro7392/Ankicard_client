@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import client from "../api/client";
+import client from "../../api/client";
 import {Voice} from "../atoms/SpeechApi"
 
 type CreateCardInputs={
@@ -50,7 +50,7 @@ export const CreateQuestionCard=()=>{
                 {errors.questionText && (
                 <span className="text-red-500 text-xl">問題を入力してください</span>
                 )}
-                <input className="bg-teal-400 py-2 w-48 mb-10 mx-auto text-4xl rounded-lg text-white hover:bg-teal-00" type="submit"/>
+                <input className="bg-teal-400 py-2 w-48 mb-10 mx-auto text-4xl rounded-lg text-white hover:bg-teal-300" type="submit"/>
                 {/*
                 <button className="bg-blue-600 py-5 w-60 mx-auto text-4xl rounded-lg text-white hover:bg-blue-400">作成する</button>
                 */}

@@ -1,8 +1,8 @@
 import { platform } from 'os';
 import React, {useState} from 'react'
 //var parser = require('ua-parser-js');
-import IWindow from '../api/i-window';
-import ISpeechRecognitionEvent from '../api/speechRegnition'
+import IWindow from '../../api/i-window';
+import ISpeechRecognitionEvent from '../../api/speechRegnition'
 // windowの型定義にIWindowを使う
 declare const window: IWindow;
 

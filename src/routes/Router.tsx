@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import { CreateCardPage } from "../pages/CreateCardPage";
-import { HomePage } from "../pages/HomePage";
-import { Progress } from "../pages/ProgressPage";
-import { LearningCardPage } from "../pages/LearningCardPage";
-import { ShowCardsPage } from "../pages/ShowCardsPage";
-import { UserInfoPage } from "../pages/UserInfoPage";
+import { CreateCardPage } from "../components/pages/CreateCardPage";
+import { HomePage } from "../components/pages/HomePage";
+import { Progress } from "../components/pages/ProgressPage";
+import { LearningCardPage } from "../components/pages/LearningCardPage";
+import { ShowCardsPage } from "../components/pages/ShowCardsPage";
+import { UserInfoPage } from "../components/pages/UserInfoPage";
+import { LoginPage } from "../components/pages/LoginPage";
 
 export const Router=()=>{
     return(
@@ -12,6 +13,8 @@ export const Router=()=>{
         <Routes>
             {/*タイトル画面 */}
             <Route path="/" element={<HomePage/>}/>
+            {/*ログイン画面 */}
+            <Route path="/login" element={<LoginPage/>}/>
             {/*学習画面 */}
             <Route path="/cards" element={<LearningCardPage/>}/>
             {/*カード新規作成 */}
