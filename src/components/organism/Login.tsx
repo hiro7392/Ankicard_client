@@ -5,6 +5,7 @@ import {useDispatch, useGlobalLoginState } from '../../context/StateProvider'
 import { AppTitle } from '../atoms/AppTitle'
 
 const localhostAuth:string='http://localhost:8080/auth';
+// passwordのバリデーション
 const validatePassword = (password:string) => {
   
   const passwordLengthMin=4;
@@ -16,6 +17,7 @@ const validatePassword = (password:string) => {
   }
   return true;
 }
+// emailのバリデーション
 const validateEmail=(email:string)=>{
   const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   if(!emailRegExp.test(email)){

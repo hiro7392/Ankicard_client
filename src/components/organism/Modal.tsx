@@ -14,6 +14,7 @@ const Modal: FC<{setModalOn: Dispatch<SetStateAction<boolean>>}> = ({setModalOn}
     //  ログアウト処理
     const logout = () => {
       changeLoginState()
+      localStorage.setItem('token','')// tokenを空にする
       navigate('/login')
       console.log("logout",isLogin)
     }
