@@ -4,6 +4,26 @@ import { useNavigate } from 'react-router-dom'
 import {useDispatch, useGlobalLoginState } from '../../context/StateProvider'
 import { AppTitle } from '../atoms/AppTitle'
 
+const localhostAuth:string='http://localhost:8080/auth';
+const validatePassword = (password:string) => {
+  
+  const passwordLengthMin=4;
+  const passwordLengthMax=32;
+  // 正規表現でメールアドレスをチェックする
+  if (password.length<passwordLengthMin || password.length>passwordLengthMax) {
+    console.log(`${passwordLengthMin}文字以上${passwordLengthMax}文字以下のパスワードを入力してください`);
+    return false;
+  }
+  return true;
+}
+const validateEmail=(email:string)=>{
+  const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if(!emailRegExp.test(email)){
+    console.log('メールアドレスを入力してください')
+    return false
+  }
+  return true
+}
 const Login = () => {
   const { isLogin} = useGlobalLoginState('loginState')
 
@@ -13,14 +33,28 @@ const Login = () => {
   const [email, setEmail] = useState('')
   
   // 認証処理
-  const sendEmail = ()=>{
+  const sendAuthRequest = ()=>{
     console.log(email,password)
-    axios.get("http://localhost:8080/api/auth",)
+    // validation
+    const validateResult=validateEmail(email)&&validatePassword(password)
+    if(!validateResult)return false
+    //  axiosでapiにリクエストを送る
+    axios.post(localhostAuth+`?email=${email}&password=${password}`)
+    .then(res=>{
+      console.log(res);
+      localStorage.setItem('token',res.data);
+    })
+    .catch(err=>{
+      console.log(err);
+      return false
+    })
+    console.log("認証処理完了 token:"+localStorage.getItem('token'))
+    return true
   }
-  //ログインボタンの処理
+  //  ログインボタンの処理
   const login=()=>{
-      const result=true
-       //ログイン処理が成功すると、ログイン状態をtrueにする 
+      const result=sendAuthRequest()
+       // ログイン処理が成功すると、ログイン状態をtrueにする 
       if(result){
         changeLoginState()
         navigate('/login')
@@ -34,17 +68,19 @@ const Login = () => {
         dispatch({
             type: 'setLogin',
             payload: {
-                serviceName:"ログイン",
+                serviceName:"ログインしています",
                 isLogin: !isLogin
             },
         })
     }
-
+  
   useEffect(()=>{
     console.log("ログイン状態",isLogin)
       //現在のログイン状況を確認
     if(isLogin){
         console.log("ログイン済み",isLogin)
+        setEmail('')
+        setPassword('')
         navigate('/')
     }
   },[isLogin,navigate])

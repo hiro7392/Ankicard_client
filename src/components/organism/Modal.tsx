@@ -23,7 +23,7 @@ const Modal: FC<{setModalOn: Dispatch<SetStateAction<boolean>>}> = ({setModalOn}
         dispatch({ 
             type: 'setLogin',
             payload: {
-                serviceName:"ログアウト",
+                serviceName:"ログアウトしています",
                 isLogin: !isLogin
             },
         })
