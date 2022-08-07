@@ -17,8 +17,9 @@ const validatePassword = (password:string) => {
   }
   return true;
 }
-// emailのバリデーション
+// メールアドレスのバリデーション
 const validateEmail=(email:string)=>{
+  //正規表現でメールアドレスをチェックする
   const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   if(!emailRegExp.test(email)){
     console.log('メールアドレスを入力してください')
@@ -43,13 +44,13 @@ const Login = () => {
     //  axiosでapiにリクエストを送る
     axios.post(localhostAuth+`?email=${email}&password=${password}`)
     .then(res=>{
-      console.log(res);
-      localStorage.setItem('token',res.data);
-    })
-    .catch(err=>{
+      console.log("response ",res);
+      
+    }).catch(err=>{
       console.log(err);
       return false
     })
+    
     console.log("認証処理完了 token:"+localStorage.getItem('token'))
     return true
   }
@@ -60,6 +61,7 @@ const Login = () => {
       if(result){
         changeLoginState()
         navigate('/login')
+        alert('ログインに成功しました')
       }else{
         alert('ログインに失敗しました')
       }
