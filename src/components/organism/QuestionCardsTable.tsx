@@ -14,7 +14,7 @@ export const QuestionCardsTable=()=>{
         //setUserCreatedCards(sampleQuestions)
     },[]);
     //"bg-slate-100 h-48 w-32 px-20 text-3xl flex items-center mb-10 leading-10"
-    const css:string="bg-slate-300 w-80 mx-10 mt-20 p-5 text-xl mb-10 leading-10";
+    const css:string="bg-slate-300 w-80 mx-10 mt-20 p-5 text-xl mb-10 leading-10 rounded";
     return(
         <>
             {
