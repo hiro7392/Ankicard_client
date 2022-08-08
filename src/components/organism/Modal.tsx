@@ -25,7 +25,7 @@ const Modal: FC<{setModalOn: Dispatch<SetStateAction<boolean>>}> = ({setModalOn}
         dispatch({ 
             type: 'setLogin',
             payload: {
-                serviceName:"ログアウトしています",
+                serviceName:"Anki Card ",
                 isLogin: false,
             },
         })

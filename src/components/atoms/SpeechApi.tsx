@@ -56,7 +56,7 @@ export const Voice = () => {
         speech.stop();
       }
     };
-    console.log(isVoiceReceive);
+    //  console.log(isVoiceReceive);
     return (
       <>
         <button id="btn" className={isVoiceReceive? "text-red-400 py-1 rounded-lg bg-slate-100 w-1/4 mx-auto"

@@ -22,7 +22,7 @@ export const Header=()=>{
         dispatch({ 
             type: 'setLogin',
             payload: {
-                serviceName:"ログインしています",
+                serviceName:"Socrates Card",
                 isLogin: true
             },
         })

@@ -61,7 +61,7 @@ const Login = () => {
        // ログイン処理が成功すると、ログイン状態をtrueにする 
       if(localStorage.getItem('token')!==null){
         
-        changeLoginState()
+        changeLoginStateTrue()
         navigate('/login')
         console.log("token ",localStorage.getItem('token'))
         alert('ログインに成功しました')
@@ -70,13 +70,13 @@ const Login = () => {
       }
   }
     const dispatch = useDispatch();
-    const changeLoginState=()=>{
+    const changeLoginStateTrue=()=>{
     // グローバルステイトの更新を行わせる指示をdispatchの引数とする
         dispatch({
             type: 'setLogin',
             payload: {
                 serviceName:"Socrates Card",
-                isLogin: !isLogin
+                isLogin: true
             },
         })
     }

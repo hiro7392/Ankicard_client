@@ -29,7 +29,7 @@ export const QuestionCard=(props:QuestionProps)=>{
 
     return ( 
         <div className="mt-20 w-1/2 h-full mx-auto">
-            <h1 className="max-h-60 bg-teal-400 text-3xl text-white py-2">{displayAnswer?"答え":"問題"}</h1>
+            <h1 className="max-h-60 bg-gray-700 text-3xl text-white py-2">{displayAnswer?"答え":"問題"}</h1>
             {/*問題の本文*/}
             <QuestionCardText 
             text={displayAnswer?
