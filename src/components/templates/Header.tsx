@@ -7,6 +7,7 @@ import Modal from "../organism/Modal"
 export const Header=()=>{
 
     const { isLogin } = useGlobalLoginState('loginState')
+    const [userName, setUserName ] = useState<string | null>('')    //
     const navigate = useNavigate()
     const [modalOn, setModalOn] = useState<boolean>(false)
     const location = useLocation()
@@ -17,7 +18,10 @@ export const Header=()=>{
     }
 
     useEffect(() => {
-    if (!isLogin) navigate('/login')
+    if (!isLogin)navigate('/login')
+    else{
+        setUserName(localStorage.getItem('userName'))
+    }
     }, [isLogin,navigate])
 
 
@@ -33,51 +37,53 @@ export const Header=()=>{
                             </span>
                             {/*ホーム画面へ戻る */}
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" 
                                 to="/"
                             >
                                 ホーム
                             </Link>
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" 
                                 to="/cards"
                             >
                                 学習する
                             </Link>
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" 
                                 to="/create"
                             >
                                 カード作成
                             </Link>
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" 
                                 to="/usercards"
                             >
                                 カード一覧
                             </Link>
                             <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
+                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" 
                                 to="/progress"
                             >
                                 進捗
                             </Link>
-                            <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-600 px-3 py-2 rounded" 
+                        </div>
+                        <div className="flex items-left">
+                            <Link
+                                className="text-right text-gray-200 hover:bg-gray-300 hover:text-gray-700 my-auto px-2 py-1 rounded mr-2" 
                                 to="/userinfo"
                             >
-                                ユーザー情報
+                                {userName}
                             </Link>
-                        </div>
                             <button className="my-3">
                                 <LogoutIcon 
-                                className="h-8 w-10 text-gray-200 hover:bg-gray-300 px-1 mr-5 rounded"
+                                className="h-8 w-10 text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-1 mr-3 rounded"
                                 aria-hidden="true"
                                 onClick={()=>{
                                     modal()
                                 }}
                                 />
                             </button>
+                        </div>
                         </div>
                 </nav>
         </header>

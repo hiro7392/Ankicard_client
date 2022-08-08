@@ -5,7 +5,7 @@ import {useDispatch, useGlobalLoginState } from '../../context/StateProvider'
 import { AppTitle } from '../atoms/AppTitle'
 
 const localhostAuth:string='http://localhost:8080/auth';
-// passwordのバリデーション
+
 const validatePassword = (password:string) => {
   
   const passwordLengthMin=4;
@@ -17,7 +17,8 @@ const validatePassword = (password:string) => {
   }
   return true;
 }
-// メールアドレスのバリデーション
+
+
 const validateEmail=(email:string)=>{
   //正規表現でメールアドレスをチェックする
   const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -37,21 +38,22 @@ const Login = () => {
   
   // 認証処理
   const sendAuthRequest = ()=>{
-    console.log(email,password)
-    // validation
-    const validateResult=validateEmail(email)&&validatePassword(password)
-    if(!validateResult)return false
+    
+    if(!validateEmail(email)&&validatePassword(password))return false
+
     //  axiosでapiにリクエストを送る
     axios.post(localhostAuth+`?email=${email}&password=${password}`)
     .then(res=>{
       console.log("response ",res);
-      
+      //  ローカルストレージにtokenとユーザネームを保存する
+      localStorage.setItem('token',res.data.token)
+      localStorage.setItem('userName',res.data.userName)
+      console.log(`認証処理完了 token: ${localStorage.getItem('token')} userName: ${localStorage.getItem('userName')}`)
     }).catch(err=>{
       console.log(err);
       return false
     })
     
-    console.log("認証処理完了 token:"+localStorage.getItem('token'))
     return true
   }
   //  ログインボタンの処理
@@ -72,20 +74,22 @@ const Login = () => {
         dispatch({
             type: 'setLogin',
             payload: {
-                serviceName:"ログインしています",
+                serviceName:"Socrates Card",
                 isLogin: !isLogin
             },
         })
     }
   
   useEffect(()=>{
-    console.log("ログイン状態",isLogin)
+    
       //現在のログイン状況を確認
     if(isLogin){
-        console.log("ログイン済み",isLogin)
-        setEmail('')
-        setPassword('')
-        navigate('/')
+      console.log("ログインしています")
+      setEmail('')
+      setPassword('')
+      navigate('/')
+    }else{
+      console.log("ログインしていません")
     }
   },[isLogin,navigate])
 
