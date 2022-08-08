@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import {LogoutIcon} from '@heroicons/react/outline'
 import { useEffect, useState } from "react"
-import { useGlobalLoginState } from "../../context/StateProvider"
+import { useDispatch, useGlobalLoginState } from "../../context/StateProvider"
 import Modal from "../organism/Modal"
 
 export const Header=()=>{
@@ -16,12 +16,25 @@ export const Header=()=>{
     const modal = () => {
         setModalOn((prevState) => (prevState = true))
     }
-
-    useEffect(() => {
-    if (!isLogin)navigate('/login')
-    else{
-        setUserName(localStorage.getItem('userName'))
+    const dispatch=useDispatch();
+    //  グローバルなisLoginをfalseにする
+    const changeLoginStateTrue=()=>{
+        dispatch({ 
+            type: 'setLogin',
+            payload: {
+                serviceName:"ログインしています",
+                isLogin: true
+            },
+        })
     }
+    useEffect(() => {
+        if(localStorage.getItem('token')!==null){
+            changeLoginStateTrue()
+        }
+        if (!isLogin)navigate('/login')
+        else{
+            setUserName(localStorage.getItem('userName'))
+        }
     }, [isLogin,navigate])
 
 

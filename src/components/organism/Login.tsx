@@ -18,7 +18,6 @@ const validatePassword = (password:string) => {
   return true;
 }
 
-
 const validateEmail=(email:string)=>{
   //正規表現でメールアドレスをチェックする
   const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -28,9 +27,10 @@ const validateEmail=(email:string)=>{
   }
   return true
 }
+
+
 const Login = () => {
   const { isLogin} = useGlobalLoginState('loginState')
-
 
   const navigate=useNavigate()
   const [password, setPassword] = useState('')
@@ -39,7 +39,7 @@ const Login = () => {
   // 認証処理
   const sendAuthRequest = ()=>{
     
-    if(!validateEmail(email)&&validatePassword(password))return false
+    if(!(validateEmail(email) && validatePassword(password)))return false
 
     //  axiosでapiにリクエストを送る
     axios.post(localhostAuth+`?email=${email}&password=${password}`)
@@ -49,27 +49,28 @@ const Login = () => {
       localStorage.setItem('token',res.data.token)
       localStorage.setItem('userName',res.data.userName)
       console.log(`認証処理完了 token: ${localStorage.getItem('token')} userName: ${localStorage.getItem('userName')}`)
+      return true
     }).catch(err=>{
       console.log(err);
       return false
     })
-    
-    return true
   }
   //  ログインボタンの処理
   const login=()=>{
-      const result=sendAuthRequest()
+      sendAuthRequest()
        // ログイン処理が成功すると、ログイン状態をtrueにする 
-      if(result){
+      if(localStorage.getItem('token')!==null){
+        
         changeLoginState()
         navigate('/login')
+        console.log("token ",localStorage.getItem('token'))
         alert('ログインに成功しました')
       }else{
         alert('ログインに失敗しました')
       }
   }
     const dispatch = useDispatch();
-    const  changeLoginState=()=>{
+    const changeLoginState=()=>{
     // グローバルステイトの更新を行わせる指示をdispatchの引数とする
         dispatch({
             type: 'setLogin',

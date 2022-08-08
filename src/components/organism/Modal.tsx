@@ -13,19 +13,20 @@ const Modal: FC<{setModalOn: Dispatch<SetStateAction<boolean>>}> = ({setModalOn}
 
     //  ログアウト処理
     const logout = () => {
-      changeLoginState()
-      localStorage.setItem('token','')// tokenを空にする
+      
+      localStorage.removeItem('token')// tokenを空にする
+      changeLoginStateFalse()
       navigate('/login')
       console.log("logout",isLogin)
     }
     const dispatch=useDispatch();
     //  グローバルなisLoginをfalseにする
-    const changeLoginState=()=>{
+    const changeLoginStateFalse=()=>{
         dispatch({ 
             type: 'setLogin',
             payload: {
                 serviceName:"ログアウトしています",
-                isLogin: !isLogin
+                isLogin: false,
             },
         })
     }
