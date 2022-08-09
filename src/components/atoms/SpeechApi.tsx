@@ -19,7 +19,7 @@ recognition.continuous = true;
 
 
 
-export const Voice = () => {
+export const SpeechApi= () => {
 
   //const ua = parser(navigator.userAgent.toLowerCase());
   const [isVoiceReceive,setIsVoiceReceive] = useState(false);
@@ -59,12 +59,11 @@ export const Voice = () => {
     //  console.log(isVoiceReceive);
     return (
       <>
-        <button id="btn" className={isVoiceReceive? "text-red-400 py-1 rounded-lg bg-slate-100 w-1/4 mx-auto"
-        :"text-blue-400 py-1 rounded-lg bg-slate-100 w-1/4 mx-auto"} 
+        <button id="btn" className={isVoiceReceive? "text-red-400 mt-2 mb-4 py-1 rounded-lg bg-slate-100 w-1/4 mx-auto"
+        :"text-blue-400 my-4 py-1 rounded-lg bg-slate-100 w-1/4 mx-auto"} 
         onClick={startSpeech}>
         {isVoiceReceive ?"停止する":"音声入力を開始する"}
         </button>
-        <br/>
          {/* <h4>取得した内容:{message}</h4> */}
       </>
       // <>
