@@ -16,13 +16,15 @@ export const Header=()=>{
     const modal = () => {
         setModalOn((prevState) => (prevState = true))
     }
+    const {serviceName}=useGlobalLoginState('loginState');
     const dispatch=useDispatch();
+
     //  グローバルなisLoginをfalseにする
     const changeLoginStateTrue=()=>{
         dispatch({ 
             type: 'setLogin',
             payload: {
-                serviceName:"Socrates Card",
+                serviceName:serviceName,
                 isLogin: true
             },
         })

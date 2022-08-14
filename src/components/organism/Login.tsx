@@ -70,12 +70,14 @@ const Login = () => {
       }
   }
     const dispatch = useDispatch();
+    const {serviceName}=useGlobalLoginState('loginState');
+
     const changeLoginStateTrue=()=>{
     // グローバルステイトの更新を行わせる指示をdispatchの引数とする
         dispatch({
             type: 'setLogin',
             payload: {
-                serviceName:"Socrates Card",
+                serviceName:serviceName,
                 isLogin: true
             },
         })
