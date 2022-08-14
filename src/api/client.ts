@@ -1,12 +1,14 @@
 import axios from "axios";
 
-const URL="http://localhost:8080/card";
+export const URL="http://localhost:8080/card";
+
+export const localURLPrivateGetCards="http://localhost:8080/private/card/1";
 
 // axios の細かい config を設定できる
 const client = axios.create({
-    baseURL: URL
-    //headers: {'X-Custom-Header': 'foobar'}
+    baseURL: URL,
+    headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
   });
   
   // axios 本体でなくこちらを利用するようにする
-  export default client;
+export default client;

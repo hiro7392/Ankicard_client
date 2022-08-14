@@ -12,7 +12,6 @@ export const CreateQuestionCard=()=>{
 
     //入力した新規カードを送信
     const onSubmit:SubmitHandler<CreateCardInputs>=(data)=>{
-        console.log('onSubmit:',data);
         client.post(`?questionText=${data.questionText}&answerText=${data.answerText}`)
         .catch((res)=>{
             console.log(res);

@@ -1,19 +1,28 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
 import { MiniQuestionCard } from "../molecules/MiniQuestionCard";
+import {localURLPrivateGetCards,URL} from "../../api/client";
 
 export const QuestionCardsTable=()=>{
     //  ユーザのカード情報を取得して10件まで表示する
     const [userCreatedCards,setUserCreatedCards]=useState(sampleQuestions);
 
-    
+    const client = axios.create({
+        baseURL:URL,
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
+    });
+
     useEffect(()=>{
         //  ここでapiを読んでカードを取得する
-        
-        //とりあえず今はサンプルデータを入れておく
-        //setUserCreatedCards(sampleQuestions)
+        client.get(``)
+        .then((res)=>{
+            console.log(res);
+        }).catch((res)=>{
+            alert('エラーが発生しました');
+        })
     },[]);
-    //"bg-slate-100 h-48 w-32 px-20 text-3xl flex items-center mb-10 leading-10"
+
     const css:string="bg-slate-300 w-80 mx-10 mt-20 p-5 text-xl mb-10 leading-10 rounded";
     return(
         <>
