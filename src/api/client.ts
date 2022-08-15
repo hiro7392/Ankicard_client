@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const URL="http://localhost:8080/card";
+export const URL="http://localhost:8080/card/2";
 
-export const localURLPrivateGetCards="http://localhost:8080/private/card/1";
+export const localURLPrivateGetCards="http://localhost:8080/private/card/2";
 
 // axios の細かい config を設定できる
 const client = axios.create({
