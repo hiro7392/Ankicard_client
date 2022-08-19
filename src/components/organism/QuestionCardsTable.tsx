@@ -18,7 +18,7 @@ export const QuestionCardsTable=()=>{
 
 
     useEffect(()=>{
-        //  ここでapiを読んでカードを取得する
+        //  call apt api to get user created cards
         client.get(``)
         .then((res)=>{
             console.log(res);

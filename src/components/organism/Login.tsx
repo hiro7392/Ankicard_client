@@ -28,6 +28,18 @@ const validateEmail=(email:string)=>{
   return true
 }
 
+// ログイン処理のタイムアウト設定
+const sleep=(duration:number)=>{
+  return new Promise(resolve=>{
+    setTimeout(resolve,duration);
+  });
+};
+
+const errorAfter1000ms=async()=>{
+  await sleep(1000);
+  throw new Error("timeout");
+}
+
 
 const Login = () => {
   const { isLogin} = useGlobalLoginState('loginState')
