@@ -28,18 +28,6 @@ const validateEmail=(email:string)=>{
   return true
 }
 
-// ログイン処理のタイムアウト設定
-const sleep=(duration:number)=>{
-  return new Promise(resolve=>{
-    setTimeout(resolve,duration);
-  });
-};
-
-const errorAfter1000ms=async()=>{
-  await sleep(1000);
-  throw new Error("timeout");
-}
-
 
 const Login = () => {
   const { isLogin} = useGlobalLoginState('loginState')
@@ -49,27 +37,32 @@ const Login = () => {
   const [email, setEmail] = useState('')
   
   // 認証処理
-  const sendAuthRequest = ()=>{
+  const sendAuthRequest =async ()=>{
     
-    if(!(validateEmail(email) && validatePassword(password)))return false
+    if(!(validateEmail(email) && validatePassword(password)))return null
 
+    
     //  axiosでapiにリクエストを送る
-    axios.post(localhostAuth+`?email=${email}&password=${password}`)
+    await axios.post(localhostAuth+`?email=${email}&password=${password}`)
     .then(res=>{
       console.log("response ",res);
-      //  ローカルストレージにtokenとユーザネームを保存する
-      localStorage.setItem('token',res.data.token)
-      localStorage.setItem('userName',res.data.userName)
       console.log(`認証処理完了 token: ${localStorage.getItem('token')} userName: ${localStorage.getItem('userName')}`)
-      return true
+      //  ローカルストレージにtokenとユーザネームを保存する
+      localStorage.setItem('token',res.data.token);
+      localStorage.setItem('userName',res.data.userName);
     }).catch(err=>{
       console.log(err);
-      return false
+      return null
     })
+    
   }
   //  ログインボタンの処理
-  const login=()=>{
-      sendAuthRequest()
+  const login=async()=>{
+    const nowUserinfo=await sendAuthRequest()
+      if(nowUserinfo===null)alert('ログインに失敗しました')
+      else{
+        console.log("現在のlocalstolarsge :",localStorage.getItem('token'));
+      }
        // ログイン処理が成功すると、ログイン状態をtrueにする 
       if(localStorage.getItem('token')!==null){
         
