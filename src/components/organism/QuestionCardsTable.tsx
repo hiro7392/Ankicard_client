@@ -5,24 +5,35 @@ import { MiniQuestionCard } from "../molecules/MiniQuestionCard";
 import {localURLPrivateGetCards,URL} from "../../api/client";
 import { question } from "../../util/typeDefinition"
 
+const numsPercols:number=3;
+
 export const QuestionCardsTable=()=>{
     //  ユーザのカード情報を取得して10件まで表示する
     const [userCreatedCards,setUserCreatedCards]=useState<question[]>([]);
+    const [colsCards,setColsCards]=useState<question[][]>([]);
 
     const client = axios.create({
         baseURL: localURLPrivateGetCards,
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
     });
-    const numsPercols:number=3;
     
-
-
+    
     useEffect(()=>{
         //  call apt api to get user created cards
         client.get(``)
         .then((res)=>{
             console.log(res);
-            setUserCreatedCards(res.data);
+            setColsCards([]);
+            // 1行にnumsPercols個ずつ並べて表示する
+            for(let i=0;i<res.data.length;i+=numsPercols){
+                let temp:question[]=[];
+                for(let j=i;j<i+numsPercols;j++){
+                    temp.push(res.data[j])
+                }
+                setColsCards((prev)=>[...prev,temp])
+                console.log(temp);
+            }
+            console.log("colsCard ",colsCards);
         }).catch((res)=>{
             alert('エラーが発生しました');
         })
@@ -34,48 +45,29 @@ export const QuestionCardsTable=()=>{
             {
                 <table className="m-auto">
                     <tbody>
-
-                        {
-                        userCreatedCards.map((quesiton,index)=>{
-                            
-                            const colEnd=numsPercols-1;
-                            let now;
-                            switch (index%numsPercols) {
-                                case 0:
-                                    now=(
-                                        <tr>
-                                        <td key={index}>
-                                        <MiniQuestionCard answerText={quesiton.AnswerText} 
-                                        questionText={quesiton.QuestionText} css={css} tag=
-                                        {quesiton.tag}/>
-                                        </td>
-                                    )
-                                    console.log(now);
-                                    break;
-                                case colEnd:
-                                    now=(
-                                        <td key={index}>
-                                            <MiniQuestionCard answerText={quesiton.AnswerText} 
-                                            questionText={quesiton.QuestionText} css={css} tag={quesiton.tag}/>
-                                        </td>
-                                        </tr>
-                                    )
-                                    break;
-                                default:
-                                    now=(
-                                        <td key={index}>
-                                        <MiniQuestionCard answerText={quesiton.AnswerText} 
-                                        questionText={quesiton.QuestionText} css={css} tag=
-                                        {quesiton.tag}/>
-                                        </td>
-                                    )
-                            }
-                            return now;
+                        {colsCards.map((col,i)=>{
+                            return(
+                                <tr key={i}>
+                                    { col.map((quesiton,index)=>{
+                                        if(quesiton===undefined){
+                                            return(
+                                                <td key={index+numsPercols*i}></td>
+                                            )
+                                        }else{
+                                            return(
+                                                <td key={index+numsPercols*i}>
+                                                    <MiniQuestionCard answerText={quesiton.AnswerText} 
+                                                    questionText={quesiton.QuestionText} css={css} tag=
+                                                    {quesiton.tag}/>
+                                                </td>
+                                            );
+                                        }
+                                        
+                                    })}
+                                </tr>
+                            );
+                            })
                         }
-                        
-                        )
-                        }
-                    
                     </tbody>
                 </table>
             }
