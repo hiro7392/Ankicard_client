@@ -5,3 +5,9 @@ export type question={
     AnswerText:string;
     tagName:string;
 };
+
+export type tag={
+    TagId:number;
+    TagName:string;
+    CreatedUserId:number;
+}

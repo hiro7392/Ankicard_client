@@ -1,6 +1,6 @@
 import {useState } from "react";
 import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
-import { QuestionCard } from "../organism/QuestionCard";
+import { QuestionCard } from "../organism/QuestionCardLearning";
 import { Header } from "../templates/Header";
 
 export const LearningCardPage=()=>{
