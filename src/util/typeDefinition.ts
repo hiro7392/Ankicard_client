@@ -3,5 +3,5 @@ export type question={
     ownUserId:number;
     QuestionText:string;
     AnswerText:string;
-    tag:string;
+    tagName:string;
 };

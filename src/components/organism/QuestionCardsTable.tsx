@@ -21,7 +21,6 @@ export const QuestionCardsTable=()=>{
         //  call apt api to get user created cards
         client.get(``)
         .then((res)=>{
-           
             setColsCards([]);   //set empty
             // 1行にnumsPercols個ずつ並べて表示する
             for(let i=0;i<res.data.length;i+=numsPercols){
@@ -57,7 +56,7 @@ export const QuestionCardsTable=()=>{
                                                 <td key={index+numsPercols*i}>
                                                     <MiniQuestionCard answerText={quesiton.AnswerText} 
                                                     questionText={quesiton.QuestionText} css={css} tag=
-                                                    {quesiton.tag}/>
+                                                    {quesiton.tagName}/>
                                                 </td>
                                             );
                                         }

@@ -44,11 +44,12 @@ const Login = () => {
     //  axiosでapiにリクエストを送る
     await axios.post(localhostAuth+`?email=${email}&password=${password}`)
     .then(res=>{
-      console.log("response ",res);
-      console.log(`認証処理完了 token: ${localStorage.getItem('token')} userName: ${localStorage.getItem('userName')}`)
+      //  console.log("response ",res);
+      //  console.log(`認証処理完了 token: ${localStorage.getItem('token')} userName: ${localStorage.getItem('userName')}`)
       //  ローカルストレージにtokenとユーザネームを保存する
       localStorage.setItem('token',res.data.token);
       localStorage.setItem('userName',res.data.userName);
+      return res.data.token;
     }).catch(err=>{
       console.log(err);
       return null
@@ -65,7 +66,7 @@ const Login = () => {
         
         changeLoginStateTrue()
         navigate('/login')
-        console.log("token ",localStorage.getItem('token'))
+        //  console.log("token ",localStorage.getItem('token'))
         alert('ログインに成功しました')
       }else{
         alert('ログインに失敗しました')

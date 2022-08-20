@@ -42,9 +42,9 @@ export const QuestionCard=(props:QuestionProps)=>{
                         :props.Question.QuestionText}
                     css={displayAnswer? "bg-slate-50 h-96 px-20 text-2xl flex items-center mb-2  leading-10"
                         :"bg-slate-50 h-96 px-20 text-3xl flex items-center mb-2 leading-10"}
-                    tag={props.Question.tag}
+                    tag={props.Question.tagName}
                     />
-                    <Tag tagName={props.Question.tag}/>
+                    <Tag tagName={props.Question.tagName}/>
                 </div>
             </div>
                 {/*問題文->回答へ　遷移するボタン */}
