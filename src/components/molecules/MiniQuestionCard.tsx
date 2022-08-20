@@ -20,6 +20,7 @@ export const MiniQuestionCard=(props:MiniQuestionCardProp)=>{
     const changeTextStateTrue=()=>{
         setDisplayQuestionText(true);
     }
+    const tagDiv= tag==="" ?<Tag tagName={tag}/>:null;  //タグがない場合はnullを返す
     return(
         <>  
             {/*<QuestionCardText text={text} css={css} tag={tag}/>*/}
@@ -34,7 +35,7 @@ export const MiniQuestionCard=(props:MiniQuestionCardProp)=>{
                     <h2 className="h-48 flex items-center text-center border-none mx-4 ">{questionText}</h2>:
                     <h2 className="h-48 flex text-sm items-center hover:bg-slate-100 text-center mx-3">{answerText}</h2>
                     }
-                    <Tag tagName={tag}/>
+                     {tagDiv}
                     </div>
                 </div>
             </div>

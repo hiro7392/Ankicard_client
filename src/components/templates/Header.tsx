@@ -39,6 +39,8 @@ export const Header=()=>{
         }
     }, [isLogin,navigate])
 
+    const IconCSS="text-sm my-auto m-2 h-8 ";
+    const IconCSSOut="text-sm my-auto rounded text-slate-50 text-white hover:bg-gray-300 hover:text-gray-700";
 
     return(
         <>
@@ -51,39 +53,40 @@ export const Header=()=>{
                                 
                             </span>
                             {/*ホーム画面へ戻る */}
-                            <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" 
-                                to="/"
-                            >
-                                ホーム
+                            <Link to="/" className={IconCSSOut}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className={IconCSS} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
                             </Link>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                            </svg>
-                                
-                            <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" 
-                                to="/cards"
-                            >
-                                学習する
+                            {/*学習画面 */}
+                            <Link to="/cards" className={IconCSSOut}>   
+                                <svg xmlns="http://www.w3.org/2000/svg" className={IconCSS} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
                             </Link>
-                            <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" 
-                                to="/create"
-                            >
-                                カード作成
+                            {/*新規作成画面 */}
+                            <Link to="/cards" className={IconCSSOut}>   
+                                <svg xmlns="http://www.w3.org/2000/svg" className={IconCSS} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
                             </Link>
-                            <Link 
+                            {/*一覧画面へ */}
+                            <Link to="/usercards" className={IconCSSOut}>   
+                                <svg xmlns="http://www.w3.org/2000/svg" className={IconCSS} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                </svg>
+                            </Link>
+                            {/* <Link 
                                 className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" 
                                 to="/usercards"
                             >
                                 カード一覧
-                            </Link>
-                            <Link 
-                                className="text-sm text-gray-200 hover:bg-gray-300 hover:text-gray-700 px-3 py-2 rounded" 
-                                to="/progress"
-                            >
-                                進捗
+                            </Link> */}
+                           {/*一覧画面へ */}
+                            <Link to="/usercards" className={IconCSSOut}>   
+                                <svg xmlns="http://www.w3.org/2000/svg" className={IconCSS} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
                             </Link>
                         </div>
                         <div className="flex items-left">
