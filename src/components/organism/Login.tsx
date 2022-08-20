@@ -41,7 +41,6 @@ const Login = () => {
     
     if(!(validateEmail(email) && validatePassword(password)))return null
 
-    
     //  axiosでapiにリクエストを送る
     await axios.post(localhostAuth+`?email=${email}&password=${password}`)
     .then(res=>{
@@ -57,12 +56,10 @@ const Login = () => {
     
   }
   //  ログインボタンの処理
-  const login=async()=>{
+  const onClickLogin=async()=>{
     const nowUserinfo=await sendAuthRequest()
       if(nowUserinfo===null)alert('ログインに失敗しました')
-      else{
-        console.log("現在のlocalstolarsge :",localStorage.getItem('token'));
-      }
+      
        // ログイン処理が成功すると、ログイン状態をtrueにする 
       if(localStorage.getItem('token')!==null){
         
@@ -76,7 +73,6 @@ const Login = () => {
   }
     const dispatch = useDispatch();
     const {serviceName}=useGlobalLoginState('loginState');
-
     const changeLoginStateTrue=()=>{
     // グローバルステイトの更新を行わせる指示をdispatchの引数とする
         dispatch({
@@ -89,7 +85,6 @@ const Login = () => {
     }
   
   useEffect(()=>{
-    
       //現在のログイン状況を確認
     if(isLogin){
       console.log("ログインしています")
@@ -146,7 +141,7 @@ const Login = () => {
           <button
             type="submit"
             className="bg-gray-600 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
-            onClick={()=>{login()}}
+            onClick={()=>{onClickLogin()}}
           >Login</button>
         </div>
       </div>
