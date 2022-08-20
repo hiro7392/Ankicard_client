@@ -9,8 +9,7 @@ const numsPercols:number=3;
 
 export const QuestionCardsTable=()=>{
     //  ユーザのカード情報を取得して10件まで表示する
-    const [userCreatedCards,setUserCreatedCards]=useState<question[]>([]);
-    const [colsCards,setColsCards]=useState<question[][]>([]);
+    const [colsCards,setColsCards]=useState<question[][]>([]);  //行ごとに保存
 
     const client = axios.create({
         baseURL: localURLPrivateGetCards,
@@ -22,8 +21,8 @@ export const QuestionCardsTable=()=>{
         //  call apt api to get user created cards
         client.get(``)
         .then((res)=>{
-            console.log(res);
-            setColsCards([]);
+           
+            setColsCards([]);   //set empty
             // 1行にnumsPercols個ずつ並べて表示する
             for(let i=0;i<res.data.length;i+=numsPercols){
                 let temp:question[]=[];
