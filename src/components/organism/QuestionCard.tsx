@@ -35,7 +35,7 @@ export const QuestionCard=(props:QuestionProps)=>{
                 :<h1 className="max-h-60 bg-gray-700 text-3xl text-white py-2">問題</h1>}
                 
                 {/*問題の本文*/}
-                <div className="bg-slate-100">
+                <div className="bg-slate-50">
                     <QuestionCardText 
                     text={displayAnswer?
                         props.Question.AnswerText
