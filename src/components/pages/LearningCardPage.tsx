@@ -1,22 +1,41 @@
-import {useState } from "react";
+import axios from "axios";
+import {useEffect, useState } from "react";
+import { localURLPrivateGetCards } from "../../api/client";
 import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
+import { question } from "../../util/typeDefinition";
 import { QuestionCardLearning } from "../organism/QuestionCardLearning";
 import { Header } from "../templates/Header";
 
+
 export const LearningCardPage=()=>{
-    //取得した問題たち  サーバができたらAPIを呼ぶようにする
-    const [questions,setQuestions]=useState(sampleQuestions);
+    //ユーザが作成したカード情報を取得
+    const [questions,setQuestions]=useState<question[]>([]);
     
+    const client=axios.create({
+        baseURL:localURLPrivateGetCards,
+        headers:{'Authorization':'Bearer '+localStorage.getItem('token')}
+    });
+    useEffect(()=>{
+        client.get(``)
+        .then((res)=>{
+            setQuestions([]);    //set empty
+            setQuestions(res.data);
+        }).catch((res)=>{
+            alert('エラーが発生しました');
+        })
+    },[]);
+
     //現在表示する問題のID
-    const [questionId,setQuestionId]=useState(1);
+    const [questionIndex,setQuestionIndex]=useState<number>(0);
     const ChangeQuestionIdToNext=()=>{
-        setQuestionId(questionId+1);
-        //console.log("in question card",questionId);
+        setQuestionIndex(questionIndex+1);
     };
+
+    
     return(
         <>
             <Header/>
-            <QuestionCardLearning Question={questions[(questionId-1)%questions.length]} ToNextQuestion={ChangeQuestionIdToNext}/>
+            <QuestionCardLearning Question={questions[questionIndex%questions.length]} ToNextQuestion={ChangeQuestionIdToNext}/>
         </>
     );
 };

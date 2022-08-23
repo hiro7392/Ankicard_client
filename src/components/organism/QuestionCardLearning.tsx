@@ -17,7 +17,7 @@ export const QuestionCardLearning=(props:QuestionProps)=>{
         //console.log("render question text");
         setQuestionText(props.Question.QuestionText);
         setDisplayAnswer(false);
-    },[props.Question.id]);
+    },[]);
 
     
     
