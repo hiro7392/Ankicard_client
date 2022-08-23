@@ -9,7 +9,7 @@ type QuestionProps={
     Question:question;
     ToNextQuestion:Function;
 };
-export const QuestionCard=(props:QuestionProps)=>{
+export const QuestionCardLearning=(props:QuestionProps)=>{
 
     //
     const [questionText,setQuestionText]=useState("");

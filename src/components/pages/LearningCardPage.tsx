@@ -1,6 +1,6 @@
 import {useState } from "react";
 import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
-import { QuestionCard } from "../organism/QuestionCardLearning";
+import { QuestionCardLearning } from "../organism/QuestionCardLearning";
 import { Header } from "../templates/Header";
 
 export const LearningCardPage=()=>{
@@ -16,7 +16,7 @@ export const LearningCardPage=()=>{
     return(
         <>
             <Header/>
-            <QuestionCard Question={questions[(questionId-1)%questions.length]} ToNextQuestion={ChangeQuestionIdToNext}/>
+            <QuestionCardLearning Question={questions[(questionId-1)%questions.length]} ToNextQuestion={ChangeQuestionIdToNext}/>
         </>
     );
 };
