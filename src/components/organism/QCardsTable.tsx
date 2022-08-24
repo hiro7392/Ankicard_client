@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
-import { MiniQuestionCard } from "../molecules/MiniQuestionCard";
+import { MiniQuestionCard } from "../molecules/MiniQCard";
 import {localURLPrivateGetCards,URL} from "../../api/client";
 import { question } from "../../util/typeDefinition"
 

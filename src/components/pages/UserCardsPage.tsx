@@ -1,4 +1,4 @@
-import { QuestionCardsTable } from "../organism/QuestionCardsTable";
+import { QuestionCardsTable } from "../organism/QCardsTable";
 import { Header } from "../templates/Header";
 
 //  ユーザが作成したカードを確認する画面

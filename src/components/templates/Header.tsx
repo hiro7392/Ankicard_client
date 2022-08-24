@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import {LogoutIcon} from '@heroicons/react/outline'
 import { useEffect, useState } from "react"
 import { useDispatch, useGlobalLoginState } from "../../context/StateProvider"
-import Modal from "../organism/Modal"
+import Modal from "../organism/LogoutModal"
 
 export const Header=()=>{
 

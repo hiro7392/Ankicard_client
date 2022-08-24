@@ -4,7 +4,7 @@ import { isBuffer } from "util";
 import { localURLPrivateGetCards } from "../../api/client";
 import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
 import { question } from "../../util/typeDefinition";
-import { QuestionCardLearning } from "../organism/QuestionCardLearning";
+import { QuestionCardLearning } from "../organism/LearningPageQCard";
 import { Header } from "../templates/Header";
 
 const client=axios.create({

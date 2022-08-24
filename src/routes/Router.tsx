@@ -3,7 +3,7 @@ import { CreateCardPage } from "../components/pages/CreateCardPage";
 import { HomePage } from "../components/pages/HomePage";
 import { Progress } from "../components/pages/ProgressPage";
 import { LearningCardPage } from "../components/pages/LearningCardPage";
-import { ShowCardsPage } from "../components/pages/ShowCardsPage";
+import { ShowCardsPage } from "../components/pages/UserCardsPage";
 import { UserInfoPage } from "../components/pages/UserInfoPage";
 import { LoginPage } from "../components/pages/LoginPage";
 

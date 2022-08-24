@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import client, { localURLPrivateGetTags } from "../../api/client";
 import { tag } from "../../util/typeDefinition";
 
-import {SpeechApi} from "../atoms/SpeechApi"
+import {SpeechApi} from "../atoms/VoiceInput"
 
 type CreateCardInputs={
     questionText:string;
