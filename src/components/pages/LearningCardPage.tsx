@@ -4,7 +4,7 @@ import { isBuffer } from "util";
 import { localURLPrivateGetCards } from "../../api/client";
 import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
 import { question } from "../../util/typeDefinition";
-import { QuestionCardLearning } from "../organism/LearningPageQCard";
+import { QuestionCardLearning } from "../organism/LearningQCard";
 import { Header } from "../templates/Header";
 
 const client=axios.create({
@@ -46,19 +46,15 @@ export const LearningCardPage=()=>{
         })
     }
 
-   
-
     //現在表示する問題のID
     const [questionIndex,setQuestionIndex]=useState<number>(0);
     const ChangeQuestionIdToNext=()=>{
         setQuestionIndex(questionIndex+1);
     };
 
-    
     return(
         <>
             <Header/>
-
             {questions[0]===undefined?<QuestionCardLearning Question={sampleQuestions[questionIndex%sampleQuestions.length]} ToNextQuestion={ChangeQuestionIdToNext}/>
             :<QuestionCardLearning Question={questions[questionIndex%questions.length]} ToNextQuestion={ChangeQuestionIdToNext}/> }
 

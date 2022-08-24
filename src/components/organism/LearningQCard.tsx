@@ -4,6 +4,7 @@ import { QuestionToAnswerButton} from "../atoms/QToAnswerBtn";
 import { QuestionCardText } from "../atoms/QCardTextTag";
 import { question } from "../../util/typeDefinition";
 import { Tag } from "../atoms/Tag";
+import { ReviewBtn } from "../molecules/ReviewBtn";
 
 type QuestionProps={
     Question:question;
@@ -45,6 +46,11 @@ export const QuestionCardLearning=(props:QuestionProps)=>{
                     {tagDiv}
                 </div>
             </div>
+            
+            {
+                displayAnswer?<ReviewBtn questionId={1}/>:null
+            }
+
                 {/*問題文->回答へ　遷移するボタン */}
                 <QuestionToAnswerButton changeQuestionState={onclickOpenAnswer}
                 buttonText={displayAnswer? "問題を見る":"答えを見る"}
