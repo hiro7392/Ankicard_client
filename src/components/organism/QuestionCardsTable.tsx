@@ -55,8 +55,8 @@ export const QuestionCardsTable=()=>{
                                             return(
                                                 <td key={index+numsPercols*i}>
                                                     <MiniQuestionCard answerText={quesiton.AnswerText} 
-                                                    questionText={quesiton.QuestionText} css={css} tag=
-                                                    {quesiton.tagName}/>
+                                                    questionText={quesiton.QuestionText} css={css}
+                                                    tag={quesiton.tagName===undefined? "":quesiton.tagName}/>
                                                 </td>
                                             );
                                         }

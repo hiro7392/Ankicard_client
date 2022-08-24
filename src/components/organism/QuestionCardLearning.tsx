@@ -12,22 +12,20 @@ type QuestionProps={
 export const QuestionCardLearning=(props:QuestionProps)=>{
 
     
-    const [questionText,setQuestionText]=useState("");
-    useEffect(()=>{
-        console.log("render question text");
-        setQuestionText(props.Question.QuestionText);
-        setDisplayAnswer(false);
-    },[]);
-
     
     
     //displayAnswer=trueで答えを表示
     const [displayAnswer,setDisplayAnswer]=useState(false);
+    // とりあえず問題を表示する
+    useEffect(()=>{
+        setDisplayAnswer(false);
+    },[]);
+    
     const onclickOpenAnswer=()=>{
         setDisplayAnswer(!displayAnswer);
         //console.log(displayAnswer?"答えを表示します":"答えを隠します");
     }
-    const tagDiv= (props.Question.tagName==="") ?<Tag tagName={props.Question.tagName}/>:null;  //タグがない場合はnullを返す
+    const tagDiv= (props.Question.tagName!==undefined) ?<Tag tagName={props.Question.tagName}/>:null;  //タグがない場合はnullを返す
     return ( 
         <div className="mt-20 w-1/2 h-full mx-auto ">
             <div className="rounded-lg mb-10">
@@ -41,7 +39,7 @@ export const QuestionCardLearning=(props:QuestionProps)=>{
                         :props.Question.QuestionText}
                     css={displayAnswer? "bg-slate-50 h-96 px-20 text-2xl flex items-center mb-2  leading-10"
                         :"bg-slate-50 h-96 px-20 text-3xl flex items-center mb-2 leading-10"}
-                    tag={props.Question.tagName}
+
                     />
                     {/* <Tag tagName={props.Question.tagName}/> */}
                     {tagDiv}
