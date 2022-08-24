@@ -35,7 +35,7 @@ export const MiniQuestionCard=(props:MiniQuestionCardProp)=>{
                     <h2 className="h-48 flex items-center text-center border-none mx-4 ">{questionText}</h2>:
                     <h2 className="h-48 flex text-sm items-center hover:bg-slate-100 text-center mx-3">{answerText}</h2>
                     }
-                     {tagDiv}
+                    {tagDiv}
                     </div>
                 </div>
             </div>

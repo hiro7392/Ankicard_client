@@ -10,19 +10,25 @@ import { Header } from "../templates/Header";
 export const LearningCardPage=()=>{
     //ユーザが作成したカード情報を取得
     const [questions,setQuestions]=useState<question[]>([]);
-    
     const client=axios.create({
         baseURL:localURLPrivateGetCards,
         headers:{'Authorization':'Bearer '+localStorage.getItem('token')}
     });
-    useEffect(()=>{
-        client.get(``)
+    // 非同期でユーザが作成したカード情報を取得
+    const getCards= async ()=>{
+        await client.get(``)
         .then((res)=>{
-            setQuestions([]);    //set empty
             setQuestions(res.data);
+            console.log(res.data);
         }).catch((res)=>{
             alert('エラーが発生しました');
         })
+    }
+    useEffect(()=>{
+        console.log("カードを取得");
+        console.log(questions[0]);
+        setQuestions([]);  //毎回空にする
+        getCards();
     },[]);
 
     //現在表示する問題のID
@@ -35,7 +41,7 @@ export const LearningCardPage=()=>{
     return(
         <>
             <Header/>
-            <QuestionCardLearning Question={questions[questionIndex%questions.length]} ToNextQuestion={ChangeQuestionIdToNext}/>
+            <QuestionCardLearning Question={sampleQuestions[questionIndex%sampleQuestions.length]} ToNextQuestion={ChangeQuestionIdToNext}/>
         </>
     );
 };

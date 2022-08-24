@@ -74,7 +74,7 @@ export const CreateQuestionCard=()=>{
                 {errors.answerText && (
                 <span className="text-red-400 text-lg">解答を入力してください</span>
                 )}
-                <select className="w-60 ml-10 mt-2 h-10 text-white align-left bg-teal-500 rounded-lg">
+                <select className="w-60 ml-10 mt-2 h-6 text-white align-left bg-slate-500 rounded-lg">
                     {/*タグの選択肢 */}
                     <option value="" className="m-2">--タグを選んでください--</option>
                         {tags.map((tag,index)=>{

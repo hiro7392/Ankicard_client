@@ -11,10 +11,10 @@ type QuestionProps={
 };
 export const QuestionCardLearning=(props:QuestionProps)=>{
 
-    //
+    
     const [questionText,setQuestionText]=useState("");
     useEffect(()=>{
-        //console.log("render question text");
+        console.log("render question text");
         setQuestionText(props.Question.QuestionText);
         setDisplayAnswer(false);
     },[]);
@@ -27,7 +27,7 @@ export const QuestionCardLearning=(props:QuestionProps)=>{
         setDisplayAnswer(!displayAnswer);
         //console.log(displayAnswer?"答えを表示します":"答えを隠します");
     }
-
+    const tagDiv= (props.Question.tagName==="") ?<Tag tagName={props.Question.tagName}/>:null;  //タグがない場合はnullを返す
     return ( 
         <div className="mt-20 w-1/2 h-full mx-auto ">
             <div className="rounded-lg mb-10">
@@ -37,14 +37,14 @@ export const QuestionCardLearning=(props:QuestionProps)=>{
                 {/*問題の本文*/}
                 <div className="bg-slate-50">
                     <QuestionCardText 
-                    text={displayAnswer?
-                        props.Question.AnswerText
+                    text={displayAnswer?props.Question.AnswerText
                         :props.Question.QuestionText}
                     css={displayAnswer? "bg-slate-50 h-96 px-20 text-2xl flex items-center mb-2  leading-10"
                         :"bg-slate-50 h-96 px-20 text-3xl flex items-center mb-2 leading-10"}
                     tag={props.Question.tagName}
                     />
-                    <Tag tagName={props.Question.tagName}/>
+                    {/* <Tag tagName={props.Question.tagName}/> */}
+                    {tagDiv}
                 </div>
             </div>
                 {/*問題文->回答へ　遷移するボタン */}
@@ -55,7 +55,7 @@ export const QuestionCardLearning=(props:QuestionProps)=>{
 
             {displayAnswer &&
                 /*回答->次の問題へ　遷移するボタン */
-                <AnswerToNextQuestionButton ToNextQuestion={props.ToNextQuestion} />
+                <AnswerToNextQuestionButton ToNextQuestion={props.ToNextQuestion} ChangeDisplayAnswer={onclickOpenAnswer}/>
             }
         </div>
     );
