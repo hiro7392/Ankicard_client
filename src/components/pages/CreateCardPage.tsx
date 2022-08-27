@@ -1,4 +1,4 @@
-import { CreateQuestionCard } from "../organism/CreateQCard";
+import { CreateQCard } from "../organism/CreateQCard";
 import { Header } from "../templates/Header";
 
 export const CreateCardPage=()=>{
@@ -6,7 +6,7 @@ export const CreateCardPage=()=>{
     return(
         <>
             <Header/>
-            <CreateQuestionCard/>
+            <CreateQCard/>
         </>
     );
 };

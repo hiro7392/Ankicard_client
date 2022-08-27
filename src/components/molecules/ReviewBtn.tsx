@@ -1,3 +1,6 @@
+import axios from "axios";
+import { localURLPrivateUpdateCards } from "../../api/client";
+
 type ReviewBtnProp={
     questionId:number;
 }
@@ -13,8 +16,21 @@ export const ReviewBtn = (props:ReviewBtnProp) => {
     const hard:string="bg-red-500 hover:bg-red-800";
 
     const upLevel:number[]=[4,3,2,1];
-    const updateCardLevel = (level:number) => {
-        console.log("levlel is " + level);
+    
+    const client = axios.create({
+        baseURL: localURLPrivateUpdateCards,
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
+    });
+    const updateCardLevel = async(addLevel:number) => {
+        console.log("levlel is " + addLevel);
+        await client.put(`${props.questionId}?level=${addLevel}`)
+        .then((res)=>{
+            console.log(res);
+            
+        }).catch((res)=>{
+            alert("カードレベルの更新でエラーが発生しました");
+            return null
+        })
 
     }
     return(

@@ -11,7 +11,7 @@ type CreateCardInputs={
     answerText:string;
     //tag:string;
 }
-export const CreateQuestionCard=()=>{
+export const CreateQCard=()=>{
     const {register,handleSubmit,formState:{errors}}=useForm<CreateCardInputs>();
     const [tags,setTags]=useState<tag[]>([]);
 
