@@ -13,19 +13,22 @@ type QuestionProps={
 export const QuestionCardLearning=(props:QuestionProps)=>{
 
     
-    
-    
     //displayAnswer=trueで答えを表示
     const [displayAnswer,setDisplayAnswer]=useState(false);
-    // とりあえず問題を表示する
-    useEffect(()=>{
-        setDisplayAnswer(false);
-    },[]);
+
+    // 難易度を答えた後で次の問題を表示するボタン
+    const [displayNextQBtn,setDisplayNextQBtn]=useState(false);
+
+    
     
     const onclickOpenAnswer=()=>{
         setDisplayAnswer(!displayAnswer);
         //console.log(displayAnswer?"答えを表示します":"答えを隠します");
     }
+    const onclickOpenNextQBtn=()=>{
+        setDisplayNextQBtn(!displayNextQBtn);
+    }
+
     const tagDiv= (props.Question.tagName!==undefined) ?<Tag tagName={props.Question.tagName}/>:null;  //タグがない場合はnullを返す
     return ( 
         <div className="mt-20 w-1/2 h-full mx-auto ">
@@ -48,7 +51,7 @@ export const QuestionCardLearning=(props:QuestionProps)=>{
             </div>
             
             {
-                displayAnswer?<ReviewBtn questionId={1}/>:null
+                displayAnswer?<ReviewBtn questionId={1} setNextQBtnOpen={onclickOpenNextQBtn}/>:null
             }
 
                 {/*問題文->回答へ　遷移するボタン */}
@@ -57,9 +60,11 @@ export const QuestionCardLearning=(props:QuestionProps)=>{
                 />
             
 
-            {displayAnswer &&
+            {displayNextQBtn &&
                 /*回答->次の問題へ　遷移するボタン */
-                <AnswerToNextQuestionButton ToNextQuestion={props.ToNextQuestion} ChangeDisplayAnswer={onclickOpenAnswer}/>
+                <AnswerToNextQuestionButton ToNextQuestion={props.ToNextQuestion} 
+                ChangeDisplayAnswer={onclickOpenAnswer}
+                ChangeDisplayNextBtn={onclickOpenNextQBtn}/>
             }
         </div>
     );

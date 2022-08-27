@@ -3,6 +3,7 @@ import { localURLPrivateUpdateCards } from "../../api/client";
 
 type ReviewBtnProp={
     questionId:number;
+    setNextQBtnOpen:Function;
 }
 //  回答を表示した際に,問題の難しさをフィードバックするボタン
 export const ReviewBtn = (props:ReviewBtnProp) => {
@@ -22,21 +23,20 @@ export const ReviewBtn = (props:ReviewBtnProp) => {
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
     });
     const updateCardLevel = async(addLevel:number) => {
-        console.log("levlel is " + addLevel);
+        //console.log("levlel is " + addLevel);
         await client.put(`${props.questionId}?level=${addLevel}`)
         .then((res)=>{
-            console.log(res);
-            
+            //console.log(res);
+            props.setNextQBtnOpen();
         }).catch((res)=>{
             alert("カードレベルの更新でエラーが発生しました");
             return null
         })
-
     }
     return(
         <>
 
-            <div className="flex-item mx-auto mb-10 bg-slate-100 p-3 w-4/6 rounded-lg">
+            <div className="flex-item mx-auto mb-4 bg-slate-100 p-3 w-4/6 rounded-lg">
                 <button className={BaseCss+easyCss}         onClick={()=>updateCardLevel(upLevel[0])}>楽勝</button>
                 <button className={BaseCss+normalCss}       onClick={()=>updateCardLevel(upLevel[1])}>普通</button>
                 <button className={BaseCss+difficultCss}    onClick={()=>updateCardLevel(upLevel[2])}>難しい</button>
