@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import client, { localURLPrivateGetTags } from "../../api/client";
+import client, { localURLPrivateCreateCards, localURLPrivateGetTags } from "../../api/client";
 import { tag } from "../../util/typeDefinition";
 
 import {SpeechApi} from "../atoms/VoiceInput"
@@ -9,7 +9,7 @@ import {SpeechApi} from "../atoms/VoiceInput"
 type CreateCardInputs={
     questionText:string;
     answerText:string;
-    //tag:string;
+    tagId:number;
 }
 export const CreateQCard=()=>{
     const {register,handleSubmit,formState:{errors}}=useForm<CreateCardInputs>();
@@ -30,9 +30,13 @@ export const CreateQCard=()=>{
         })
     },[]);
 
+    const clientCreateCard = axios.create({
+        baseURL: localURLPrivateCreateCards,
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
+    });
     //入力した新規カードを送信
     const onSubmit:SubmitHandler<CreateCardInputs>=(data)=>{
-        client.post(`?questionText=${data.questionText}&answerText=${data.answerText}`)
+        clientCreateCard.post(`0?questionText=${data.questionText}&answerText=${data.answerText}&tagId=${data.tagId}`)
         .catch((res)=>{
             console.log(res);
             console.log("Error");
@@ -74,7 +78,8 @@ export const CreateQCard=()=>{
                 {errors.answerText && (
                 <span className="text-red-400 text-lg">解答を入力してください</span>
                 )}
-                <select className="w-60 ml-10 mt-2 h-6 text-white align-left bg-slate-500 rounded-lg">
+                <select className="w-60 ml-10 mt-2 h-6 text-white align-left bg-slate-500 rounded-lg"
+                placeholder="解答を入力してください" {...register('tagId',{required:true})}>
                     {/*タグの選択肢 */}
                     <option value="" className="m-2">--タグを選んでください--</option>
                         {tags.map((tag,index)=>{

@@ -6,8 +6,11 @@ export const localURLPrivateGetCards="http://localhost:8080/private/card/2";
 
 export const localURLPrivateGetTags="http://localhost:8080/private/tag/";
 
-
+// カード更新
 export const localURLPrivateUpdateCards="http://localhost:8080/private/card/";
+
+//  カード新規作成
+export const localURLPrivateCreateCards="http://localhost:8080/card/";
 
 
 export const localURLPrivateGetTagsByCard="http://localhost:8080/private/tag/card/";
