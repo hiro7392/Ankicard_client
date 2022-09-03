@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import { createTypeReferenceDirectiveResolutionCache } from "typescript";
-import { QuestionCardText } from "../atoms/QCardTextTag";
+import { useState } from "react";
 import { Tag } from "../atoms/Tag";
 type MiniQuestionCardProp={
     answerText:string;
@@ -20,7 +18,7 @@ export const MiniQuestionCard=(props:MiniQuestionCardProp)=>{
     const changeTextStateTrue=()=>{
         setDisplayQuestionText(true);
     }
-    const tagDiv= (tag!=="") ?<Tag tagName={tag}/>:null;  //タグがない場合はnullを返す
+    const tagDiv= (tag !=="") ?<Tag tagName={tag}/>:null;  //タグがない場合はnullを返す
     return(
         <>  
             {/*<QuestionCardText text={text} css={css} tag={tag}/>*/}

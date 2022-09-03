@@ -1,22 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
+import { sampleQuestionsCols } from "../../data/sampleQuestionAndAnswer";
 import { MiniQuestionCard } from "../molecules/MiniQCard";
-import {localURLPrivateGetCards,URL} from "../../api/client";
+import {localURLPrivateGetCards} from "../../api/client";
 import { question } from "../../util/typeDefinition"
 
 const numsPercols:number=3;
+const client = axios.create({
+    baseURL: localURLPrivateGetCards,
+    headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
+});
+
 
 export const QuestionCardsTable=()=>{
     //  ユーザのカード情報を取得して10件まで表示する
-    const [colsCards,setColsCards]=useState<question[][]>([]);  //行ごとに保存
+    const [colsCards,setColsCards]=useState<question[][]>(sampleQuestionsCols);  //行ごとに保存
 
-    const client = axios.create({
-        baseURL: localURLPrivateGetCards,
-        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
-    });
-    
-    
     useEffect(()=>{
         //  call apt api to get user created cards
         client.get(``)
@@ -29,7 +28,6 @@ export const QuestionCardsTable=()=>{
                     temp.push(res.data[j])
                 }
                 setColsCards((prev)=>[...prev,temp])
-                console.log(temp);
             }
             console.log("colsCard ",colsCards);
         }).catch((res)=>{
@@ -46,7 +44,7 @@ export const QuestionCardsTable=()=>{
                         {colsCards.map((col,i)=>{
                             return(
                                 <tr key={i}>
-                                    { col.map((quesiton,index)=>{
+                                    { col.map((quesiton:question,index)=>{
                                         if(quesiton===undefined){
                                             return(
                                                 <td key={index+numsPercols*i}></td>
@@ -56,7 +54,7 @@ export const QuestionCardsTable=()=>{
                                                 <td key={index+numsPercols*i}>
                                                     <MiniQuestionCard answerText={quesiton.AnswerText} 
                                                     questionText={quesiton.QuestionText} css={css}
-                                                    tag={quesiton.tagName===undefined? "":quesiton.tagName}/>
+                                                    tag={quesiton.tagName!=null ? quesiton.tagName:"タグなし"}/>
                                                 </td>
                                             );
                                         }
