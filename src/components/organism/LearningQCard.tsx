@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { AnswerToNextQuestionButton } from "../atoms/AnswerToNextQBtn";
 import { QuestionToAnswerButton} from "../atoms/QToAnswerBtn";
 import { QuestionCardText } from "../atoms/QCardTextTag";
@@ -10,7 +10,7 @@ type QuestionProps={
     Question:question;
     ToNextQuestion:Function;
 };
-export const QuestionCardLearning=(props:QuestionProps)=>{
+const QuestionCardLearning=(props:QuestionProps)=>{
 
     
     //displayAnswer=trueで答えを表示
@@ -69,4 +69,8 @@ export const QuestionCardLearning=(props:QuestionProps)=>{
         </div>
     );
 };
+
+const MemoLizedQCardLearning=memo(QuestionCardLearning);
+
+export default MemoLizedQCardLearning;
 

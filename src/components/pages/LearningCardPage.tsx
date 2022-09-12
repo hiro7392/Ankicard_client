@@ -4,7 +4,7 @@ import { isBuffer } from "util";
 import { localURLPrivateGetCards } from "../../api/client";
 import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
 import { question } from "../../util/typeDefinition";
-import { QuestionCardLearning } from "../organism/LearningQCard";
+import  MemoLizedQCardLearning from "../organism/LearningQCard";
 import { Header } from "../templates/Header";
 
 const client=axios.create({
@@ -55,8 +55,8 @@ export const LearningCardPage=()=>{
     return(
         <>
             <Header/>
-            {questions[0]===undefined?<QuestionCardLearning Question={sampleQuestions[questionIndex%sampleQuestions.length]} ToNextQuestion={ChangeQuestionIdToNext}/>
-            :<QuestionCardLearning Question={questions[questionIndex%questions.length]} ToNextQuestion={ChangeQuestionIdToNext}/> }
+            {questions[0]===undefined?<MemoLizedQCardLearning Question={sampleQuestions[questionIndex%sampleQuestions.length]} ToNextQuestion={ChangeQuestionIdToNext}/>
+            :<MemoLizedQCardLearning Question={questions[questionIndex%questions.length]} ToNextQuestion={ChangeQuestionIdToNext}/> }
 
         </>
     );

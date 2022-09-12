@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { memo,useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {useDispatch, useGlobalLoginState } from '../../context/StateProvider'
 import { AppTitle } from '../atoms/AppTitle'
@@ -150,4 +150,7 @@ const Login = () => {
   )
 }
 
-export default Login
+
+const MemoLizedLogin=memo(Login);
+
+export default MemoLizedLogin;

@@ -38,35 +38,28 @@ export const QuestionCardsTable=()=>{
     const css:string="bg-slate-300 w-80 mx-10 mt-20 p-5 text-xl mb-10 leading-10 rounded";
     return(
         <>
-            {
-                <table className="m-auto">
-                    <tbody>
-                        {colsCards.map((col,i)=>{
-                            return(
-                                <tr key={i}>
-                                    { col.map((quesiton:question,index)=>{
-                                        if(quesiton===undefined){
-                                            return(
-                                                <td key={index+numsPercols*i}></td>
-                                            )
-                                        }else{
-                                            return(
-                                                <td key={index+numsPercols*i}>
-                                                    <MiniQuestionCard answerText={quesiton.AnswerText} 
-                                                    questionText={quesiton.QuestionText} css={css}
-                                                    tag={quesiton.tagName!=null ? quesiton.tagName:"タグなし"}/>
-                                                </td>
-                                            );
-                                        }
-                                        
-                                    })}
-                                </tr>
-                            );
-                            })
-                        }
-                    </tbody>
-                </table>
-            }
+            {<table className="m-auto">
+                <tbody>
+                    {colsCards.map((col,i)=>{
+                        return(
+                            <tr key={i}>
+                                { col.map((quesiton:question,index)=>{
+                                    if(quesiton===undefined){
+                                        return(<td key={index+numsPercols*i}></td>);
+                                    }else{
+                                        return(
+                                            <td key={index+numsPercols*i}>
+                                                <MiniQuestionCard answerText={quesiton.AnswerText} 
+                                                questionText={quesiton.QuestionText} css={css}
+                                                tag={quesiton.tagName!=null ? quesiton.tagName:"タグなし"}/>
+                                            </td>);
+                                    }
+                                })}
+                            </tr>
+                        );})
+                    }
+                </tbody>
+            </table>}
         </>
     );
 }
