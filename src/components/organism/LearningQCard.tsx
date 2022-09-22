@@ -5,6 +5,7 @@ import { QuestionCardText } from "../atoms/QCardTextTag";
 import { question } from "../../util/typeDefinition";
 import { Tag } from "../atoms/Tag";
 import { ReviewBtn } from "../molecules/ReviewBtn";
+import { ToDetailBtn } from "../atoms/ToDetailBtn";
 
 type QuestionProps={
     Question:question;
@@ -29,7 +30,10 @@ const QuestionCardLearning=(props:QuestionProps)=>{
         setDisplayNextQBtn(!displayNextQBtn);
     }
 
-    const tagDiv= (props.Question.TagName!==undefined) ?<Tag TagName={props.Question.TagName}/>:null;  //タグがない場合はnullを返す
+    const tagDiv= (props.Question.TagName!=="") 
+            ?<Tag TagName={props.Question.TagName}/>
+            :<Tag TagName="タグなし"/>;  //タグがない場合はnullを返す
+
     return ( 
         <div className="mt-20 w-1/2 h-full mx-auto ">
             <div className="rounded-lg mb-10">
@@ -47,7 +51,11 @@ const QuestionCardLearning=(props:QuestionProps)=>{
                         :"bg-slate-50 h-96 px-20 text-3xl flex items-center mb-2 leading-10"}
                     />
                     {/* <Tag tagName={props.Question.tagName}/> */}
-                    {tagDiv}
+                    <div className="flex items-start border-t-4 border-slate-200 pt-4 mx-2">
+                        {tagDiv}
+                        <ToDetailBtn Path="/" Message={`学習レベル${props.Question.LearningLevel}`}/>
+                    </div>
+                    
                 </div>
             </div>
 

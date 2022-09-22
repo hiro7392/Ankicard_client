@@ -13,21 +13,17 @@ const client=axios.create({
 });
 
 export const LearningCardPage=()=>{
-    //ユーザが作成したカード情報を取得
     const [questions,setQuestions]=useState<question[]>([]);
-     //  画面を表示する際に一回だけ実行する
+     //  画面を表示する際にユーザが作成したカード情報を取得
     useEffect(()=>{
         const questionSet=async()=>{
             const result=await getCards();
-            if(result===null)alert('エラーが発生しました learningCardPage');
-            // console.log("カードを取得");
-            // console.log("questions",questions);
+            console.log("result ",result);
         };
         questionSet();
-        console.log("questions [0]=",questions[0]);
     },[]);
 
-    // 非同期でユーザが作成したカード情報を取得
+    // ユーザが作成したカード情報を取得
     const getCards= async ()=>{
         await client.get(``)
         .then((res)=>{
@@ -36,8 +32,7 @@ export const LearningCardPage=()=>{
                 temp.push(res.data[i]);
             }
             setQuestions(temp);
-            // console.log(res);
-            // console.log("set questions",questions);
+            console.log("questions ",questions);
             return questions
         }).catch((res)=>{
             alert('エラーが発生しました');
