@@ -4,7 +4,7 @@ export type question={
     QuestionText:string;
     LearningLevel:number;
     AnswerText:string;
-    tagName:string;
+    TagName:string;
 };
 
 export type tag={

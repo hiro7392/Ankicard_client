@@ -29,7 +29,7 @@ const QuestionCardLearning=(props:QuestionProps)=>{
         setDisplayNextQBtn(!displayNextQBtn);
     }
 
-    const tagDiv= (props.Question.tagName!==undefined) ?<Tag tagName={props.Question.tagName}/>:null;  //タグがない場合はnullを返す
+    const tagDiv= (props.Question.TagName!==undefined) ?<Tag TagName={props.Question.TagName}/>:null;  //タグがない場合はnullを返す
     return ( 
         <div className="mt-20 w-1/2 h-full mx-auto ">
             <div className="rounded-lg mb-10">
@@ -39,17 +39,18 @@ const QuestionCardLearning=(props:QuestionProps)=>{
                 {/*問題の本文*/}
                 <div className="bg-slate-50">
                     <QuestionCardText 
-                    text={displayAnswer?props.Question.AnswerText
+                    text={displayAnswer?
+                        props.Question.AnswerText
                         :props.Question.QuestionText}
-                    css={displayAnswer? "bg-slate-50 h-96 px-20 text-2xl flex items-center mb-2  leading-10"
+                    css={displayAnswer? 
+                        "bg-slate-50 h-96 px-20 text-2xl flex items-center mb-2  leading-10"
                         :"bg-slate-50 h-96 px-20 text-3xl flex items-center mb-2 leading-10"}
-
                     />
                     {/* <Tag tagName={props.Question.tagName}/> */}
                     {tagDiv}
                 </div>
             </div>
-            
+
             {
                 displayAnswer?<ReviewBtn questionId={1} setNextQBtnOpen={onclickOpenNextQBtn}/>:null
             }

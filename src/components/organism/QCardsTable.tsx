@@ -49,9 +49,11 @@ export const QuestionCardsTable=()=>{
                                     }else{
                                         return(
                                             <td key={index+numsPercols*i}>
-                                                <MiniQuestionCard answerText={quesiton.AnswerText} 
-                                                questionText={quesiton.QuestionText} css={css}
-                                                tag={quesiton.tagName!=null ? quesiton.tagName:"タグなし"}/>
+                                                <MiniQuestionCard 
+                                                    answerText={quesiton.AnswerText} 
+                                                    questionText={quesiton.QuestionText} css={css}
+                                                    tag={quesiton.TagName!=null ? quesiton.TagName:"-----"}
+                                                />
                                             </td>);
                                     }
                                 })}

@@ -17,7 +17,6 @@ export const LearningCardPage=()=>{
     const [questions,setQuestions]=useState<question[]>([]);
      //  画面を表示する際に一回だけ実行する
     useEffect(()=>{
-        console.log("useEffect");
         const questionSet=async()=>{
             const result=await getCards();
             if(result===null)alert('エラーが発生しました learningCardPage');
@@ -55,8 +54,17 @@ export const LearningCardPage=()=>{
     return(
         <>
             <Header/>
-            {questions[0]===undefined?<MemoLizedQCardLearning Question={sampleQuestions[questionIndex%sampleQuestions.length]} ToNextQuestion={ChangeQuestionIdToNext}/>
-            :<MemoLizedQCardLearning Question={questions[questionIndex%questions.length]} ToNextQuestion={ChangeQuestionIdToNext}/> }
+            {
+            questions[0]===undefined
+                ?<MemoLizedQCardLearning 
+                    Question={sampleQuestions[questionIndex%sampleQuestions.length]} 
+                    ToNextQuestion={ChangeQuestionIdToNext}
+                />
+                :<MemoLizedQCardLearning 
+                    Question={questions[questionIndex%questions.length]} 
+                    ToNextQuestion={ChangeQuestionIdToNext}
+                /> 
+            }
 
         </>
     );
