@@ -56,28 +56,24 @@ export const CreateQCard=()=>{
             
             <form className="flex flex-col w-1/2 mt-8 mx-auto bg-slate-300 rounded-lg" onSubmit={handleSubmit(onSubmit)}>
                 {/* 問題文 */}
-                <label className="h-52 mt-8 mx-10 bg-slate-100 rounded-lg">
+                <label className="h-42 mt-8 mx-10 bg-slate-100 rounded-lg">
                     <p className="text-left pl-3  py-2 text-slate-100 bg-slate-600"> 問題文</p>
-                    <input type="text" className="h-44 w-full bg-slate-100 rounded-lg" 
+                    <input type="text" className="h-32 w-full bg-slate-100 rounded-lg" 
                     /* register関数の呼び出しにより、フォーム入力の要素を引数の名前で登録する */
                     placeholder="問題を入力してください" {...register('questionText',{required:true})}/>
                 </label>
+                
+                <SpeechApi/>
                 {errors.questionText && (
                 <span className="text-red-500 text-lg">問題を入力してください</span>
                 )}
-                <SpeechApi/>
                 
                 {/* 解答分 */}
-                <label className="h-56 mx-10 bg-slate-100 rounded-lg">
+                <label className="h-42 mx-10 bg-slate-100 rounded-lg">
                     <p className="text-left pl-3 py-2 text-slate-100 bg-teal-600">解答</p>
                     <input type="text" className="h-36 w-full bg-slate-100 rounded-lg" 
                     placeholder="解答を入力してください" {...register('answerText',{required:true})}/>
                 </label>
-
-                {/* データ検証に失敗するとerrorsが返され、登録した名前で取り出せる */}
-                {errors.answerText && (
-                <span className="text-red-400 text-lg">解答を入力してください</span>
-                )}
                 <select className="w-60 ml-10 mt-2 h-6 text-white align-left bg-slate-500 rounded-lg"
                 placeholder="解答を入力してください" {...register('tagId',{required:true})}>
                     {/*タグの選択肢 */}
@@ -89,13 +85,12 @@ export const CreateQCard=()=>{
                         }
                 </select>
                 <SpeechApi/>
+                {/* データ検証に失敗するとerrorsが返され、登録した名前で取り出せる */}
+                {errors.answerText && (
+                <span className="text-red-400 text-lg">解答を入力してください</span>
+                )}
                 
-                
-                
-                <input className="bg-teal-400 py-2 w-48 mb-4 mt-10 mx-auto text-4xl rounded-lg text-white hover:bg-teal-300" type="submit" value="作成する"/>
-                {/*
-                <button className="bg-blue-600 py-5 w-60 mx-auto text-4xl rounded-lg text-white hover:bg-blue-400">作成する</button>
-                */}
+                <input className="bg-slate-600 py-3 w-64 mb-4 mt-4 mx-auto text-4xl rounded-lg text-white hover:bg-teal-500" type="submit" value="作成する"/>
 
             </form>
         </>

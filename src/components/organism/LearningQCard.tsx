@@ -24,7 +24,9 @@ const QuestionCardLearning=(props:QuestionProps)=>{
         setDisplayAnswer(!displayAnswer);
     }
     const onclickOpenNextQBtn=()=>{
-        setDisplayNextQBtn(!displayNextQBtn);
+        setDisplayAnswer(false);
+        setDisplayNextQBtn(false);
+        props.ToNextQuestion();
     }
 
     const tagDiv= (props.Question.TagName!=="") 
@@ -32,9 +34,8 @@ const QuestionCardLearning=(props:QuestionProps)=>{
             :<Tag TagName="タグなし"/>;  //タグがない場合はタグなしを表示する
 
     return ( 
-        <div className="mt-20 w-1/2 h-full mx-auto ">
+        <div className="mt-20 w-1/2 mx-auto">
             <div className="rounded-lg mb-10">
-
                 {displayAnswer
                 ?<AnswerBar onclick={onclickOpenAnswer}/>
                 :<h1 className="max-h-60 bg-gray-700 text-3xl text-white py-2 z-0">問題</h1>
@@ -47,8 +48,8 @@ const QuestionCardLearning=(props:QuestionProps)=>{
                         props.Question.AnswerText
                         :props.Question.QuestionText}
                     css={displayAnswer? 
-                        "bg-slate-50 h-96 px-20 text-2xl flex items-center mb-2  leading-10"
-                        :"bg-slate-50 h-96 px-20 text-3xl flex items-center mb-2 leading-10"}
+                        "bg-slate-50 h-80 px-20 text-2xl flex items-center mb-2  leading-10"
+                        :"bg-slate-50 h-80 px-20 text-3xl flex items-center mb-2 leading-10"}
                     />
                     {/* <Tag tagName={props.Question.tagName}/> */}
                     <div className="flex items-start border-t-4 border-slate-200 pt-4 mx-2">
@@ -60,6 +61,7 @@ const QuestionCardLearning=(props:QuestionProps)=>{
             </div>
 
             {
+                /*回答->次の問題へ　遷移するボタン */
                 displayAnswer?<ReviewBtn questionId={1} setNextQBtnOpen={onclickOpenNextQBtn}/>:null
             }
 

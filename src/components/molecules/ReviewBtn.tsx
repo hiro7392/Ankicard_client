@@ -8,7 +8,7 @@ type ReviewBtnProp={
 //  回答を表示した際に,問題の難しさをフィードバックするボタン
 export const ReviewBtn = (props:ReviewBtnProp) => {
 
-    const BaseCss:string="rounded-lg mx-3 py-3 px-5 text-gray-100 hover:text-gray-200 ";
+    const BaseCss:string="rounded-lg text-xl w-56 m-1 py-3 text-gray-100 hover:text-gray-200 ";
     
     // それぞれのボタンは異なるCSSを適用する
     const easyCss:string="bg-blue-500 hover:bg-blue-800";
@@ -23,10 +23,9 @@ export const ReviewBtn = (props:ReviewBtnProp) => {
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
     });
     const updateCardLevel = async(addLevel:number) => {
-        //console.log("levlel is " + addLevel);
         await client.put(`${props.questionId}?level=${addLevel}`)
         .then((res)=>{
-            //console.log(res);
+            alert("回答を送信しました");
             props.setNextQBtnOpen();
         }).catch((res)=>{
             alert("カードレベルの更新でエラーが発生しました");
@@ -36,11 +35,19 @@ export const ReviewBtn = (props:ReviewBtnProp) => {
     return(
         <>
 
-            <div className="flex-item mx-auto mb-4 bg-slate-100 p-3 w-4/6 rounded-lg">
-                <button className={BaseCss+easyCss}         onClick={()=>updateCardLevel(upLevel[0])}>楽勝</button>
-                <button className={BaseCss+normalCss}       onClick={()=>updateCardLevel(upLevel[1])}>普通</button>
-                <button className={BaseCss+difficultCss}    onClick={()=>updateCardLevel(upLevel[2])}>難しい</button>
-                <button className={BaseCss+hard}            onClick={()=>updateCardLevel(upLevel[3])}>無理</button>
+            <div className="flex-item mx-auto mb-2 bg-slate-100 w-4/6 rounded">
+                <table className="mx-auto">
+                    <tbody>
+                        <tr>
+                            <button className={BaseCss+easyCss}         onClick={()=>updateCardLevel(upLevel[0])}>楽勝</button>
+                            <button className={BaseCss+normalCss}       onClick={()=>updateCardLevel(upLevel[1])}>普通</button>
+                        </tr>
+                        <tr>
+                            <button className={BaseCss+difficultCss}    onClick={()=>updateCardLevel(upLevel[2])}>難しい</button>
+                            <button className={BaseCss+hard}            onClick={()=>updateCardLevel(upLevel[3])}>無理</button>
+                        </tr>
+                    </tbody>    
+                </table>
             </div>
         </>
     );
