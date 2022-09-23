@@ -12,8 +12,8 @@ export const QuestionToAnswerButton=(props:questionStateManage)=>{
         props.changeQuestionState();
     }
     return(
-        <button className=
-        "bg-gray-600 rounded-lg mt-3 p-3 text-gray-100 hover:bg-teal-500 hover:text-gray-200" 
+        <button 
+        className="bg-teal-400 hover:bg-teal-700 rounded-lg mt-3 p-3 text-gray-100  hover:text-gray-200 font-bold" 
             onClick={onclickOpenAnswer}
         >
             {props.buttonText}

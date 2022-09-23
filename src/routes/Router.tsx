@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import { CreateCardPage } from "../components/pages/CreateCardPage";
-import { HomePage } from "../components/pages/HomePage";
-import { Progress } from "../components/pages/ProgressPage";
-import { LearningCardPage } from "../components/pages/LearningCardPage";
-import { ShowCardsPage } from "../components/pages/UserCardsPage";
-import { UserInfoPage } from "../components/pages/UserInfoPage";
-import { LoginPage } from "../components/pages/LoginPage";
+import { CreateCardPage } from "../components/pages/CreateCard";
+import { HomePage } from "../components/pages/Home";
+import { Progress } from "../components/pages/UserProgress";
+import { LearningCardPage } from "../components/pages/Learning";
+import { ShowCardsPage } from "../components/pages/UsersCards";
+import { UserInfoPage } from "../components/pages/UserInfo";
+import { LoginPage } from "../components/pages/Login";
 
 export const Router=()=>{
     return(
