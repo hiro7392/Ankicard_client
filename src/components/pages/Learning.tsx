@@ -31,6 +31,13 @@ export const LearningCardPage=()=>{
             for(let i=0;i<res.data.length;i++){
                 temp.push(res.data[i]);
             }
+            temp.sort((a,b)=>{
+                if(a.LearningLevel>b.LearningLevel){
+                    return 1;
+                }else{
+                    return -1;
+                }
+            });
             setQuestions(temp);
             console.log("questions ",questions);
             return questions
@@ -45,7 +52,9 @@ export const LearningCardPage=()=>{
     const ChangeQuestionIdToNext=()=>{
         setQuestionIndex(questionIndex+1);
     };
-
+    const displayCard=questionIndex<questions.length 
+    ? <MemoLizedQCardLearning Question={questions[questionIndex]} ToNextQuestion={ChangeQuestionIdToNext}/> 
+    : <h1 className="mt-20 text-xl font-bold">今日の学習は終了しました</h1>;
     return(
         <>
             <Header/>
@@ -55,10 +64,7 @@ export const LearningCardPage=()=>{
                     Question={sampleQuestions[questionIndex%sampleQuestions.length]} 
                     ToNextQuestion={ChangeQuestionIdToNext}
                 />
-                :<MemoLizedQCardLearning 
-                    Question={questions[questionIndex%questions.length]} 
-                    ToNextQuestion={ChangeQuestionIdToNext}
-                /> 
+                :displayCard
             }
 
         </>
