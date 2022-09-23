@@ -6,6 +6,7 @@ import { question } from "../../util/typeDefinition";
 import { Tag } from "../atoms/Tag";
 import { ReviewBtn } from "../molecules/ReviewBtn";
 import { ToDetailBtn } from "../atoms/ToDetailBtn";
+import { AnswerBar } from "../molecules/AnswerBar";
 
 type QuestionProps={
     Question:question;
@@ -13,18 +14,14 @@ type QuestionProps={
 };
 const QuestionCardLearning=(props:QuestionProps)=>{
 
-    
     //displayAnswer=trueで答えを表示
     const [displayAnswer,setDisplayAnswer]=useState(false);
 
     // 難易度を答えた後で次の問題を表示するボタン
     const [displayNextQBtn,setDisplayNextQBtn]=useState(false);
 
-    
-    
     const onclickOpenAnswer=()=>{
         setDisplayAnswer(!displayAnswer);
-        //console.log(displayAnswer?"答えを表示します":"答えを隠します");
     }
     const onclickOpenNextQBtn=()=>{
         setDisplayNextQBtn(!displayNextQBtn);
@@ -32,13 +29,16 @@ const QuestionCardLearning=(props:QuestionProps)=>{
 
     const tagDiv= (props.Question.TagName!=="") 
             ?<Tag TagName={props.Question.TagName}/>
-            :<Tag TagName="タグなし"/>;  //タグがない場合はnullを返す
+            :<Tag TagName="タグなし"/>;  //タグがない場合はタグなしを表示する
 
     return ( 
         <div className="mt-20 w-1/2 h-full mx-auto ">
             <div className="rounded-lg mb-10">
-                {displayAnswer? <h1 className="max-h-60 bg-teal-600 text-3xl text-white py-2">答え</h1>
-                :<h1 className="max-h-60 bg-gray-700 text-3xl text-white py-2">問題</h1>}
+
+                {displayAnswer
+                ?<AnswerBar onclick={onclickOpenAnswer}/>
+                :<h1 className="max-h-60 bg-gray-700 text-3xl text-white py-2 z-0">問題</h1>
+                }
                 
                 {/*問題の本文*/}
                 <div className="bg-slate-50">
@@ -63,12 +63,14 @@ const QuestionCardLearning=(props:QuestionProps)=>{
                 displayAnswer?<ReviewBtn questionId={1} setNextQBtnOpen={onclickOpenNextQBtn}/>:null
             }
 
-                {/*問題文->回答へ　遷移するボタン */}
-                <QuestionToAnswerButton changeQuestionState={onclickOpenAnswer}
-                buttonText={displayAnswer? "問題を見る":"答えを見る"}
-                />
+            {/*問題文->回答へ　遷移するボタン */}
+            {displayAnswer
+            ?null
+            :<QuestionToAnswerButton 
+            changeQuestionState={onclickOpenAnswer}
+            buttonText="答えを見る"
+            />}
             
-
             {displayNextQBtn &&
                 /*回答->次の問題へ　遷移するボタン */
                 <AnswerToNextQuestionButton ToNextQuestion={props.ToNextQuestion} 

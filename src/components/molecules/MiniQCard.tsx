@@ -27,7 +27,7 @@ export const MiniQuestionCard=(props:MiniQuestionCardProp)=>{
                 <div className="bg-white h-72 min-h-min pb-10 rounded">
                     <div className="flex items-start border-b-2 border-b-slate-400 mx-1">
                         <p 
-                            className="flex-1 text-teal-600 hover:bg-slate-200 cursor-pointer border-r-1 border-r-slate-400" 
+                            className="flex-1 text-teal-600 hover:bg-slate-200 cursor-pointer" 
                             onClick={changeTextStateTrue}>
                             問題
                         </p>
