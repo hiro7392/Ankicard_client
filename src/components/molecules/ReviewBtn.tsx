@@ -29,25 +29,17 @@ export const ReviewBtn = (props:ReviewBtnProp) => {
             props.setNextQBtnOpen();
         }).catch((res)=>{
             alert("カードレベルの更新でエラーが発生しました");
-            return null
         })
     }
     return(
         <>
 
             <div className="flex-item mx-auto mb-2 bg-slate-100 w-4/6 rounded">
-                <table className="mx-auto">
-                    <tbody>
-                        <tr>
-                            <button className={BaseCss+easyCss}         onClick={()=>updateCardLevel(upLevel[0])}>楽勝</button>
-                            <button className={BaseCss+normalCss}       onClick={()=>updateCardLevel(upLevel[1])}>普通</button>
-                        </tr>
-                        <tr>
-                            <button className={BaseCss+difficultCss}    onClick={()=>updateCardLevel(upLevel[2])}>難しい</button>
-                            <button className={BaseCss+hard}            onClick={()=>updateCardLevel(upLevel[3])}>無理</button>
-                        </tr>
-                    </tbody>    
-                </table>
+                    <button className={BaseCss+easyCss}         onClick={()=>updateCardLevel(upLevel[0])}>楽勝</button>
+                    <button className={BaseCss+normalCss}       onClick={()=>updateCardLevel(upLevel[1])}>普通</button>
+                
+                    <button className={BaseCss+difficultCss}    onClick={()=>updateCardLevel(upLevel[2])}>難しい</button>
+                    <button className={BaseCss+hard}            onClick={()=>updateCardLevel(upLevel[3])}>無理</button>
             </div>
         </>
     );
