@@ -35,7 +35,7 @@ export const QuestionCardsTable=()=>{
         })
     },[]);
 
-    const css:string="bg-slate-300 w-80 mx-10 mt-20 p-5 text-xl mb-10 leading-10 rounded";
+    const css:string="bg-slate-300 w-80 mx-10 mt-8 p-5 text-xl leading-10 rounded";
     return(
         <>
             {<table className="m-auto">
