@@ -11,12 +11,13 @@ export const CreateTagBtn=()=>{
         baseURL: localURLPrivatePostTag,
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
     });
-    const {handleSubmit,formState:{errors}}=useForm<NewTagType>();
+    const {register,handleSubmit,formState:{errors}}=useForm<NewTagType>();
     //タグを新規作成
     const onSubmit:SubmitHandler<NewTagType>=(data)=>{
-        clientCreateTag.post(`?tag_name=${data.tagName}`)
+        clientCreateTag.post(`/?tag_name=${data.tagName}`)
         .then((res)=>{
             alert("タグを作成しました");
+            console.log(data.tagName)
         })
         .catch((err)=>{
             console.log(err);
@@ -24,8 +25,17 @@ export const CreateTagBtn=()=>{
     }
     return(
         <form className="flex items ml-2 h-6 rounded-lg " onSubmit={handleSubmit(onSubmit)}>
-            <input type={"text"} className="rounded h-6 border-2 border-slate-300"/>
-            <input type="submit" value="タグを作成" className="text-xs p-1 ml-1 rounded bg-slate-600 text-white hover:bg-teal-500 "/>
+            <input 
+                type={"text"} 
+                className="rounded h-6 border-2 border-slate-300"
+                {...register('tagName',{required:true})}
+            />
+            <input 
+                type="submit" 
+                value="タグを作成" 
+                className="text-xs p-1 ml-1 rounded bg-slate-600 text-white hover:bg-teal-500"
+                
+            />
         </form>
     );
 }

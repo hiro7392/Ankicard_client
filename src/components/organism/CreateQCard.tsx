@@ -92,9 +92,8 @@ export const CreateQCard=()=>{
                     </textarea>
                     <SpeechApi/>
                 </label>
-                <div className="flex items-center mb-5 bg-slate-200 rounded ml-10 mr-10 h-10">
-                    <select 
-                        className="w-60 h-6 ml-1 text-white align-left bg-slate-500 rounded-lg"
+                <select 
+                        className="w-60 h-6 ml-10 text-white align-left bg-slate-500 rounded-lg"
                         placeholder="解答を入力してください" 
                         {...register('tagId',{required:true})}>
                         {/*タグの選択肢 */}
@@ -109,9 +108,7 @@ export const CreateQCard=()=>{
                                 <option key={index} value={tag.TagId}>{tag.TagName}</option>
                             );})
                         }
-                    </select>
-                    <CreateTagBtn />
-                </div>
+                </select>
                 
                 {/* データ検証に失敗するとerrorsが返され、登録した名前で取り出せる */}
                 {errors.answerText && (
@@ -126,6 +123,9 @@ export const CreateQCard=()=>{
                 <input className="bg-slate-600 py-3 w-64 mb-4 mt-4 mx-auto text-4xl rounded-lg text-white hover:bg-teal-500" type="submit" value="作成する"/>
                 
             </form>
+            {/* <div className="flex items-center mb-5 bg-slate-200 rounded ml-10 mr-10 h-10">
+                    <CreateTagBtn />
+            </div> */}
         </>
     )
 }
