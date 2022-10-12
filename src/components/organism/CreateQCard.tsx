@@ -68,15 +68,14 @@ export const CreateQCard=()=>{
                         rows={2} 
                         cols={33} 
                         maxLength={300} 
-                        placeholder="問題を入力してください"
+                        placeholder={errors.questionText && "問題を入力してください"}
                         {...register('questionText',{required:true})}>
                     </textarea>
                     <SpeechApi/>
                 </label>
+
                 
-                {errors.questionText && (
-                <span className="text-red-500 text-lg">問題を入力してください</span>
-                )}
+                
                 
                 {/* 解答分 */}
                 <label className="h-42 mx-10 bg-slate-100 rounded-lg mb-5">
@@ -118,9 +117,14 @@ export const CreateQCard=()=>{
                 {errors.answerText && (
                 <span className="text-red-400 text-lg">解答を入力してください</span>
                 )}
-                
+                <p>{errors.questionText && 
+                        <span className="text-red-500 text-lg">問題を入力してください</span>}
+                </p>
+                <p>{errors.answerText && 
+                        <span className="text-red-500 text-lg">解答を入力してください</span>}
+                </p>
                 <input className="bg-slate-600 py-3 w-64 mb-4 mt-4 mx-auto text-4xl rounded-lg text-white hover:bg-teal-500" type="submit" value="作成する"/>
-
+                
             </form>
         </>
     )
