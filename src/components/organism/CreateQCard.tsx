@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import client, { localURLPrivateCreateCards, localURLPrivateGetTags } from "../../api/client";
 import { tag } from "../../util/typeDefinition";
+import { CreateTagBtn } from "../atoms/CreateTagBtn";
 
 import {SpeechApi} from "../atoms/VoiceInput"
 
@@ -57,35 +58,62 @@ export const CreateQCard=()=>{
             
             <form className="flex flex-col w-1/2 mt-8 mx-auto bg-slate-300 rounded-lg" onSubmit={handleSubmit(onSubmit)}>
                 {/* 問題文 */}
-                <label className="h-42 mt-8 mx-10 bg-slate-100 rounded-lg">
+                <label className="h-42 mt-8 mx-10 mb-10 bg-slate-100 rounded-lg">
                     <p className="text-left pl-3  py-2 text-slate-100 bg-slate-600"> 問題文</p>
-                    <input type="text" className="h-32 w-full bg-slate-100 rounded-lg" 
-                    /* register関数の呼び出しにより、フォーム入力の要素を引数の名前で登録する */
-                    placeholder="問題を入力してください" {...register('questionText',{required:true})}/>
+                    {/* <input type="text" className="h-32 w-full bg-slate-100 rounded-lg" 
+                    // register関数の呼び出しにより、フォーム入力の要素を引数の名前で登録する 
+                    placeholder="問題を入力してください" {...register('questionText',{required:true})}/> */}
+                    <textarea 
+                        className="h-32 w-full bg-slate-100 rounded-lg border-b-2" 
+                        rows={2} 
+                        cols={33} 
+                        maxLength={300} 
+                        placeholder="問題を入力してください"
+                        {...register('questionText',{required:true})}>
+                    </textarea>
+                    <SpeechApi/>
                 </label>
                 
-                <SpeechApi/>
                 {errors.questionText && (
                 <span className="text-red-500 text-lg">問題を入力してください</span>
                 )}
                 
                 {/* 解答分 */}
-                <label className="h-42 mx-10 bg-slate-100 rounded-lg">
+                <label className="h-42 mx-10 bg-slate-100 rounded-lg mb-5">
                     <p className="text-left pl-3 py-2 text-slate-100 bg-teal-600">解答</p>
-                    <input type="text" className="h-36 w-full bg-slate-100 rounded-lg" 
-                    placeholder="解答を入力してください" {...register('answerText',{required:true})}/>
+                    {/* <input type="text" className="h-36 w-full bg-slate-100 rounded-lg" 
+                    placeholder="解答を入力してください" {...register('answerText',{required:true})}/> */}
+                    <textarea 
+                        className="h-36 w-full bg-slate-100 rounded-lg border-b-2" 
+                        rows={2} 
+                        cols={33} 
+                        maxLength={300} 
+                        placeholder="問題を入力してください"
+                        {...register('questionText',{required:true})}>
+                    </textarea>
+                    <SpeechApi/>
                 </label>
-                <select className="w-60 ml-10 mt-2 h-6 text-white align-left bg-slate-500 rounded-lg"
-                placeholder="解答を入力してください" {...register('tagId',{required:true})}>
-                    {/*タグの選択肢 */}
-                    <option value="" className="m-2">--タグを選んでください--</option>
+                <div className="flex items-center mb-5 bg-slate-200 rounded ml-10 mr-10 h-10">
+                    <select 
+                        className="w-60 h-6 ml-1 text-white align-left bg-slate-500 rounded-lg"
+                        placeholder="解答を入力してください" 
+                        {...register('tagId',{required:true})}>
+                        {/*タグの選択肢 */}
+                        <option 
+                            value="" 
+                            className="m-2"
+                        >
+                            --タグを選んでください--
+                        </option>
                         {tags.map((tag,index)=>{
                             return(
                                 <option key={index} value={tag.TagId}>{tag.TagName}</option>
                             );})
                         }
-                </select>
-                <SpeechApi/>
+                    </select>
+                    <CreateTagBtn />
+                </div>
+                
                 {/* データ検証に失敗するとerrorsが返され、登録した名前で取り出せる */}
                 {errors.answerText && (
                 <span className="text-red-400 text-lg">解答を入力してください</span>

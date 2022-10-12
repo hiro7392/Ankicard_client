@@ -29,7 +29,7 @@ export const QuestionCardsTable=()=>{
                 }
                 setColsCards((prev)=>[...prev,temp])
             }
-            console.log("colsCard ",colsCards);
+            //console.log("colsCard ",colsCards);
         }).catch((res)=>{
             alert('エラーが発生しました');
         })
