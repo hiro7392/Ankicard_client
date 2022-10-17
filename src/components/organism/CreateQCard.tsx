@@ -37,7 +37,7 @@ export const CreateQCard=()=>{
     });
     //入力した新規カードを送信
     const onSubmit:SubmitHandler<CreateCardInputs>=(data)=>{
-        clientCreateCard.post(`0?questionText=${data.questionText}&answerText=${data.answerText}&tagId=${data.tagId}`)
+        clientCreateCard.post(`?questionText=${data.questionText}&answerText=${data.answerText}&tagId=${data.tagId}`)
         .then((res)=>{
             console.log(res);
             alert("カードを作成しました");
