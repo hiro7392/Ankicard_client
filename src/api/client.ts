@@ -4,7 +4,7 @@ export const URL="http://localhost:8080/card/2";
 
 export const localURLPrivateGetCards="http://localhost:8080/private/card/2";
 
-export const localURLPrivatePostTag="http://localhost:8080/private/tag/";
+export const localURLPrivatePostTag="http://localhost:8080/private/tag/create";
 
 export const localURLPrivateGetTags="http://localhost:8080/private/tag/";
 

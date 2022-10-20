@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { sampleQuestionsCols } from "../../data/sampleQuestionAndAnswer";
+import { useCallback, useEffect, useState } from "react";
+import { sampleQuestions, sampleQuestionsCols } from "../../data/sampleQuestionAndAnswer";
 import { MiniQuestionCard } from "../molecules/MiniQCard";
 import {localURLPrivateGetCards} from "../../api/client";
 import { question } from "../../util/typeDefinition"
+import MemolizedCardModal from "./CardModal";
 
 const numsPercols:number=3;
 const client = axios.create({
@@ -15,7 +16,20 @@ const client = axios.create({
 export const QuestionCardsTable=()=>{
     //  ユーザのカード情報を取得して10件まで表示する
     const [colsCards,setColsCards]=useState<question[][]>(sampleQuestionsCols);  //行ごとに保存
+    const [cards,setCards]=useState<question>([]);
+    const [modalIsOpen,setIsOpen]=useState(false);
 
+    const toggleModalState = useCallback(
+        () => setIsOpen((beforeModalState) => !beforeModalState),
+        []
+    );
+
+    const handleClick = useCallback(
+        (id:number) => {
+          toggleModalState();
+        },
+        [toggleModalState]
+      );
     useEffect(()=>{
         //  call apt api to get user created cards
         client.get(``)
@@ -48,13 +62,26 @@ export const QuestionCardsTable=()=>{
                                         return(<td key={index+numsPercols*i}></td>);
                                     }else{
                                         return(
-                                            <td key={index+numsPercols*i}>
-                                                <MiniQuestionCard 
-                                                    answerText={quesiton.AnswerText} 
-                                                    questionText={quesiton.QuestionText} css={css}
-                                                    tag={quesiton.TagName!=null ? quesiton.TagName:"-----"}
-                                                />
-                                            </td>);
+                                        <td key={index+numsPercols*i}>
+                                            <MiniQuestionCard 
+                                                answerText={quesiton.AnswerText} 
+                                                questionText={quesiton.QuestionText} 
+                                                css={css}
+                                                tag={quesiton.TagName!=null ? quesiton.TagName:"-----"}
+                                                onClickAbout={handleClick}
+                                                heightAll={"h-72"}
+                                                heightLow={"h-48"}
+                                            />
+                                            <MemolizedCardModal 
+                                                answerText={quesiton.AnswerText} 
+                                                questionText={quesiton.QuestionText}
+                                                modalIsOpen={modalIsOpen}
+                                                tag={quesiton.TagName!=null ? quesiton.TagName:"-----"}
+                                                closeModal={toggleModalState}
+                                                
+                                            />
+                                        </td>
+                                        );
                                     }
                                 })}
                             </tr>
@@ -62,6 +89,7 @@ export const QuestionCardsTable=()=>{
                     }
                 </tbody>
             </table>}
+            
         </>
     );
 }

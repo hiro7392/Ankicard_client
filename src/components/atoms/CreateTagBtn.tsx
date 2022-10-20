@@ -14,7 +14,7 @@ export const CreateTagBtn=()=>{
     const {register,handleSubmit,formState:{errors}}=useForm<NewTagType>();
     //タグを新規作成
     const onSubmit:SubmitHandler<NewTagType>=(data)=>{
-        clientCreateTag.post(`/?tag_name=${data.tagName}`)
+        clientCreateTag.post(`?tag_name=${data.tagName}`)
         .then((res)=>{
             alert("タグを作成しました");
             console.log(data.tagName)

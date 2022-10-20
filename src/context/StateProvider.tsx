@@ -1,4 +1,4 @@
-import {useState,useReducer,createContext, useContext } from 'react'
+import {useReducer,createContext, useContext } from 'react'
 
 import { IAction, initialLoginState, initialState, loginReducer, reducer, State,loginState, ILoginAction, ILogoutAction } from './reducer'
 
@@ -20,8 +20,7 @@ export const Provider = (props:any) => {
         {props.children}
       </stateContext.Provider>
     </dispatchContextLogin.Provider>
-    
-  )
+  );
 }
 
 // dispatch関数を利用できるようにする
