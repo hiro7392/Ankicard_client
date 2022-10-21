@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { sampleQuestions, sampleQuestionsCols } from "../../data/sampleQuestionAndAnswer";
 import { MiniQuestionCard } from "../molecules/MiniQCard";
 import {localURLPrivateGetCards} from "../../api/client";
-import { question } from "../../util/typeDefinition"
+import { question } from "../../../types/question"
 import MemolizedCardModal from "./CardModal";
 
 const numsPercols:number=3;
@@ -16,7 +16,7 @@ const client = axios.create({
 export const QuestionCardsTable=()=>{
     //  ユーザのカード情報を取得して10件まで表示する
     const [colsCards,setColsCards]=useState<question[][]>(sampleQuestionsCols);  //行ごとに保存
-    const [cards,setCards]=useState<question>([]);
+    const [cards,setCards]=useState<question[]>([]);
     const [modalIsOpen,setIsOpen]=useState(false);
 
     const toggleModalState = useCallback(
@@ -35,13 +35,23 @@ export const QuestionCardsTable=()=>{
         client.get(``)
         .then((res)=>{
             setColsCards([]);   //set empty
+            setCards([]);
             // 1行にnumsPercols個ずつ並べて表示する
             for(let i=0;i<res.data.length;i+=numsPercols){
                 let temp:question[]=[];
-                for(let j=i;j<i+numsPercols;j++){
-                    temp.push(res.data[j])
-                }
-                setColsCards((prev)=>[...prev,temp])
+                    for(let j=i;j<i+numsPercols;j++){
+                        temp.push(res.data[j]);
+                        const q:question={
+                            id              :res.data[j].card_id,
+                            ownUserId       :res.data[j].created_user_id,
+                            QuestionText    :res.data[j].question_text,
+                            LearningLevel   :res.data[j].learning_level,
+                            AnswerText      :res.data[j].answer_text,
+                            TagName         :res.data[j].tag_name,
+                        }
+                        setCards((prev)=>[...prev,q]);
+                    }
+                setColsCards((prev)=>[...prev,temp]);
             }
             //console.log("colsCard ",colsCards);
         }).catch((res)=>{

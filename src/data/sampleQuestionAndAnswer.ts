@@ -1,4 +1,4 @@
-import { question } from "../util/typeDefinition"
+import { question } from "../../types/question"
 
 export const sampleQuestions:question[]=[
     {

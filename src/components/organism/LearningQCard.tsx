@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from "react";
 import { AnswerToNextQuestionButton } from "../atoms/AnswerToNextQBtn";
 import { QuestionToAnswerButton} from "../atoms/QToAnswerBtn";
 import { QuestionCardText } from "../atoms/QCardTextTag";
-import { question } from "../../util/typeDefinition";
+import { question } from "../../../types/question";
 import { Tag } from "../atoms/Tag";
 import { ReviewBtn } from "../molecules/ReviewBtn";
 import { ToDetailBtn } from "../atoms/ToDetailBtn";
