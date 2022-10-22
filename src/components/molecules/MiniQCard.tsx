@@ -8,7 +8,8 @@ type MiniQuestionCardProp={
     css:string;
     onClickAbout: (id:number)=>void;
     heightAll:string;
-    heightLow:string
+    questionTextSize:string;
+    answerTextSize:string;
 }
 
 
@@ -50,21 +51,21 @@ export const MiniQuestionCard=(props:MiniQuestionCardProp)=>{
                             解答
                         </p>
                     </div>
-                    <div>
+                    <div className="text-center">
                         {displayQuestionText?
-                            <h2 className={"flex items-center text-center border-none mx-4 "+props.heightLow}>
+                            <h2 className={"flex items-center border-none mx-6 "+props.questionTextSize}>
                                 {props.question.QuestionText}
                             </h2>
-                            :<h2 className={"flex text-sm items-center text-center mx-3 "+props.heightLow}>
+                            :<h2 className={"flex items-center  mx-6 mx-auto "+props.answerTextSize}>
                                 {props.question.AnswerText}
                             </h2>
                         }
+                    </div>
                         <div className="flex items-start border-t-2 border-t-slate-400 mx-1">
                             {tagDiv}
-                            {/* <p className="flex text-sm p-2 m-1 text-left text-sky-600 m-1 p-2">レベル{props.Question.LearningLevel}</p> */}
-                            <ToDetailBtn Path="/" Message="詳細へ" onClick={props.onClickAbout} id={props.question.id}/>
+                            <ToDetailBtn Path="/" Message="詳細へ" onClick={()=>props.onClickAbout(props.question.id)} id={props.question.id}/>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
         </>

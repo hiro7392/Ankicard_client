@@ -37,7 +37,8 @@ const CardModal=(props: Props)=>{
                 css={css}
                 onClickAbout={()=>{}}
                 heightAll={"h-96"}
-                heightLow={"h-72"}
+                questionTextSize={"h-72 text-3xl"}
+                answerTextSize={"h-72 text-xl"}
             />
         </Modal>
     )

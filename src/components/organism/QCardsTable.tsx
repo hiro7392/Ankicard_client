@@ -44,15 +44,6 @@ export const QuestionCardsTable=()=>{
             let temp:question[]=[];
                 for(let j=i;j<i+numsPercols;j++){
                     temp.push(cards[j]);
-                    // const q:question={
-                    //     id              :res.data[j].card_id,
-                    //     ownUserId       :res.data[j].created_user_id,
-                    //     QuestionText    :res.data[j].question_text,
-                    //     LearningLevel   :res.data[j].learning_level,
-                    //     AnswerText      :res.data[j].answer_text,
-                    //     TagName         :res.data[j].tag_name,
-                    // }
-                    // setCards((prev)=>[...prev,q]);
                 }
             setColsCards((prev)=>[...prev,temp]);
         }
@@ -85,7 +76,8 @@ export const QuestionCardsTable=()=>{
                                                 // tag={quesiton.TagName!=null ? quesiton.TagName:"-----"}
                                                 onClickAbout={handleClick}
                                                 heightAll={"h-72"}
-                                                heightLow={"h-48"}
+                                                questionTextSize={"h-48 text-sl"}
+                                                answerTextSize={"h-48 text-sm"}
                                             />
                                             <MemolizedCardModal 
                                                 question={modalQuestion}
