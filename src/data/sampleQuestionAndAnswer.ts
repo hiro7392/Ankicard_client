@@ -1,4 +1,4 @@
-import  question  from "../../types/Question"
+import  question  from "../types/Question"
 
 export const sampleQuestions:question[]=[
     {

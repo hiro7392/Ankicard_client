@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import Modal from 'react-modal';
 import { MiniQuestionCard } from '../molecules/MiniQCard';
-import question from "../../../types/Question";
+import question from "../../types/Question";
 import { sampleQuestions } from '../../data/sampleQuestionAndAnswer';
 
 

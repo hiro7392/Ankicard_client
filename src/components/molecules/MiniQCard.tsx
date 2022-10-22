@@ -1,5 +1,5 @@
 import { useState } from "react";
-import question from "../../../types/Question";
+import question from "../../types/Question";
 import { Tag } from "../atoms/Tag";
 import { ToDetailBtn } from "../atoms/ToDetailBtn";
 

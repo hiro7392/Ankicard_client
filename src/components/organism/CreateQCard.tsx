@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import client, { localURLPrivateCreateCards, localURLPrivateGetTags } from "../../api/client";
-import { tag } from "../../../types/Tag";
+import tag from "../../types/Tag";
 import { CreateTagBtn } from "../atoms/CreateTagBtn";
 
 import {SpeechApi} from "../atoms/VoiceInput"
