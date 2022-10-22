@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { sampleQuestions, sampleQuestionsCols } from "../../data/sampleQuestionAndAnswer";
 import { MiniQuestionCard } from "../molecules/MiniQCard";
 import {localURLPrivateGetCards} from "../../api/client";
-import { question } from "../../../types/question"
+import question  from "../../../types/Question"
 import MemolizedCardModal from "./CardModal";
 
 const numsPercols:number=3;
@@ -16,7 +16,8 @@ const client = axios.create({
 export const QuestionCardsTable=()=>{
     //  ユーザのカード情報を取得して10件まで表示する
     const [colsCards,setColsCards]=useState<question[][]>(sampleQuestionsCols);  //行ごとに保存
-    const [cards,setCards]=useState<question[]>([]);
+    const [modalQuestion,setModalQuestion]=useState<question>();                 //全てのカード
+    const [cards,setCards]=useState<question[]>([])
     const [modalIsOpen,setIsOpen]=useState(false);
 
     const toggleModalState = useCallback(
@@ -26,10 +27,12 @@ export const QuestionCardsTable=()=>{
 
     const handleClick = useCallback(
         (id:number) => {
+          const newQuestion=cards.find((card)=>card.id===id) || cards[0];
+          setModalQuestion(newQuestion)
           toggleModalState();
         },
         [toggleModalState]
-      );
+    );
     useEffect(()=>{
         //  call apt api to get user created cards
         client.get(``)
@@ -67,28 +70,24 @@ export const QuestionCardsTable=()=>{
                     {colsCards.map((col,i)=>{
                         return(
                             <tr key={i}>
-                                { col.map((quesiton:question,index)=>{
-                                    if(quesiton===undefined){
+                                { col.map((q:question,index)=>{
+                                    if(q===undefined){
                                         return(<td key={index+numsPercols*i}></td>);
                                     }else{
                                         return(
                                         <td key={index+numsPercols*i}>
                                             <MiniQuestionCard 
-                                                answerText={quesiton.AnswerText} 
-                                                questionText={quesiton.QuestionText} 
+                                                question={q}
                                                 css={css}
-                                                tag={quesiton.TagName!=null ? quesiton.TagName:"-----"}
+                                                // tag={quesiton.TagName!=null ? quesiton.TagName:"-----"}
                                                 onClickAbout={handleClick}
                                                 heightAll={"h-72"}
                                                 heightLow={"h-48"}
                                             />
                                             <MemolizedCardModal 
-                                                answerText={quesiton.AnswerText} 
-                                                questionText={quesiton.QuestionText}
+                                                question={modalQuestion}
                                                 modalIsOpen={modalIsOpen}
-                                                tag={quesiton.TagName!=null ? quesiton.TagName:"-----"}
                                                 closeModal={toggleModalState}
-                                                
                                             />
                                         </td>
                                         );

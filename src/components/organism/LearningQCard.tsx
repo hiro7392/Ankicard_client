@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from "react";
 import { AnswerToNextQuestionButton } from "../atoms/AnswerToNextQBtn";
 import { QuestionToAnswerButton} from "../atoms/QToAnswerBtn";
 import { QuestionCardText } from "../atoms/QCardTextTag";
-import { question } from "../../../types/question";
+import question  from "../../../types/Question";
 import { Tag } from "../atoms/Tag";
 import { ReviewBtn } from "../molecules/ReviewBtn";
 import { ToDetailBtn } from "../atoms/ToDetailBtn";
@@ -54,7 +54,7 @@ const QuestionCardLearning=(props:QuestionProps)=>{
                     {/* <Tag tagName={props.Question.tagName}/> */}
                     <div className="flex items-start border-t-4 border-slate-200 pt-4 mx-2">
                         {tagDiv}
-                        <ToDetailBtn Path="/" Message={`学習レベル${props.Question.LearningLevel}`}/>
+                        <ToDetailBtn Path="/" Message={`学習レベル${props.Question.LearningLevel}`} onClick={()=>{}} id={1}/>
                     </div>
                     
                 </div>

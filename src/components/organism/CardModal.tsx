@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import Modal from 'react-modal';
 import { MiniQuestionCard } from '../molecules/MiniQCard';
+import question from "../../../types/Question";
+import { sampleQuestions } from '../../data/sampleQuestionAndAnswer';
 
 
 type Props ={
-    answerText:string;
-    questionText:string;
+    question?:question;
     modalIsOpen:    boolean;
-    tag:string;
     closeModal: ()=>void;
 };
 
@@ -23,6 +23,7 @@ const CardModal=(props: Props)=>{
           },
     };
     const css:string="bg-slate-300 w-180 mx-10 mt-8 p-5 text-xl leading-10 rounded";
+    const q:question=(props.question===undefined)?sampleQuestions[0]:props.question;
     return(
         <Modal
             isOpen={props.modalIsOpen}
@@ -32,10 +33,9 @@ const CardModal=(props: Props)=>{
             className="w-full w-2/4  mx-auto p-3 overflow-scroll bg-white"
         >
             <MiniQuestionCard 
-                answerText={props.answerText} 
-                questionText={props.questionText} 
+                question={q}
                 css={css}
-                tag={props.tag}
+                onClickAbout={()=>{}}
                 heightAll={"h-96"}
                 heightLow={"h-72"}
             />

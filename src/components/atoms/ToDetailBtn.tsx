@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 type ToDetailBtnProps = {
     Message: string;
     Path:string;
-    onClick?:()=>void
+    onClick:(id:number)=>void
+    id:number
 }
 
 export const ToDetailBtn = (props: ToDetailBtnProps) => {
@@ -13,7 +14,7 @@ export const ToDetailBtn = (props: ToDetailBtnProps) => {
         <>
             <button 
                 className={css}
-                onClick={props.onClick}
+                onClick={()=>props.onClick(props.id)}
             >
             {props.Message}
             </button>

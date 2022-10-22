@@ -3,7 +3,7 @@ import {useEffect, useState } from "react";
 import { isBuffer } from "util";
 import { localURLPrivateGetCards } from "../../api/client";
 import { sampleQuestions } from "../../data/sampleQuestionAndAnswer";
-import { question } from "../../../types/question";
+import question from "../../../types/Question";
 import  MemoLizedQCardLearning from "../organism/LearningQCard";
 import { Header } from "../templates/Header";
 
