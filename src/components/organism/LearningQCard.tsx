@@ -67,17 +67,20 @@ const QuestionCardLearning=(props:QuestionProps)=>{
 
             {/*問題文->回答へ　遷移するボタン */}
             {displayAnswer
-            ?null
-            :<QuestionToAnswerButton 
-            changeQuestionState={onclickOpenAnswer}
-            buttonText="答えを見る"
-            />}
+                ?null
+                :<QuestionToAnswerButton 
+                    changeQuestionState={onclickOpenAnswer}
+                    buttonText="答えを見る"
+                />
+            }
             
             {displayNextQBtn &&
                 /*回答->次の問題へ　遷移するボタン */
-                <AnswerToNextQuestionButton ToNextQuestion={props.ToNextQuestion} 
-                ChangeDisplayAnswer={onclickOpenAnswer}
-                ChangeDisplayNextBtn={onclickOpenNextQBtn}/>
+                <AnswerToNextQuestionButton 
+                    ToNextQuestion={props.ToNextQuestion} 
+                    ChangeDisplayAnswer={onclickOpenAnswer}
+                    ChangeDisplayNextBtn={onclickOpenNextQBtn}
+                />
             }
         </div>
     );

@@ -103,7 +103,9 @@ const Login = () => {
 
       <div className="flex bg-white shadow-md rounded-lg w-1/2  mx-auto px-8 pt-6 pb-8 mb-4 mt-10 flex-col font-mono">
         <AppTitle/>
-        <h1 className="bg-white pt-6 pb-4 font-bold rounded text-xl">Login</h1>
+        <h1 className="bg-white pt-6 pb-4 font-bold rounded text-xl">
+          Login
+        </h1>
         <div className="mb-4">
           <label
             htmlFor="username"
@@ -136,7 +138,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
           />
-          <p className="text-red text-xs italic">Please choose a password.</p>
+          <p className="text-red text-xs italic">パスワードを入力してください.</p>
         </div>
         <div className="flex items-center justify-between">
           <button

@@ -8,7 +8,7 @@ type ReviewBtnProp={
 //  回答を表示した際に,問題の難しさをフィードバックするボタン
 export const ReviewBtn = (props:ReviewBtnProp) => {
 
-    const BaseCss:string="rounded-lg text-xl w-56 m-1 py-3 text-gray-100 hover:text-gray-200 ";
+    const BaseCss:string="rounded-lg text-xl w-56 m-1 py-3 text-gray-100 hover:text-gray-200 transition-colors ";
     
     // それぞれのボタンは異なるCSSを適用する
     const easyCss:string="bg-blue-500 hover:bg-blue-800";
